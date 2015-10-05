@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+         </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Username</a></li>
+                    <li><a href="#">Logout</a></li>
+            </ul>
+         </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li ><a href="home.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li ><a href="admin.html">Admin </a></li>
+                <li class="active"><a href="#">Forms <span class="sr-only">(current)</span></a></li>
+            </ul>
+         </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Forms : Registration Form</h1>
+
+
+            <ul class="nav nav-tabs" data-tabs="tabs">
+                <li role="presentation" ><a href="forms.html">Forms</a></li>
+                <li role="presentation" class="active"><a href="form-fields.html">Fields</a></li>
+            </ul>
+
+
+                <form>
+                    <!-- First Name-->
+                    <div class="form-group col-xs-8 name">
+                        <div class="col-xs-7">
+                            <label for="firstname">First Name</label>
+                            <input class="form-control" id = "firstname" placeholder="First Name"/>
+                        </div>
+                        <div class="col-xs-5 col-xs-push-4">
+                            <a href="#" class="btn btn-success">
+                                <scan class="glyphicon glyphicon-pencil"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-align-justify"></scan>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--Last name-->
+
+                    <div class="form-group col-xs-8 name">
+                        <div class="col-xs-7">
+                            <label for="lastname">Last Name</label>
+                            <input class="form-control" id = "lastname" placeholder="Last Name"/>
+                        </div>
+                        <div class="col-xs-5 col-xs-push-4">
+                            <a href="#" class="btn btn-success">
+                                <scan class="glyphicon glyphicon-pencil"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-align-justify"></scan>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-xs-8 name">
+                        <div class="col-xs-7">
+                            <label for="DOB">Date of Birth</label>
+                            <input type="date" class="form-control" id = "DOB"/>
+
+                        </div>
+                        <div class="col-xs-5 col-xs-push-4">
+                            <a href="#" class="btn btn-success">
+                                <scan class="glyphicon glyphicon-pencil"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-align-justify"></scan>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group col-xs-8 name">
+                        <div class="col-xs-7">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" type="text" name="role">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+
+                        </div>
+                        <div class="col-xs-5 col-xs-push-4">
+                            <a href="#" class="btn btn-success">
+                                <scan class="glyphicon glyphicon-pencil"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-align-justify"></scan>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-xs-8 name">
+                        <div class="col-xs-7 ">
+                            <label for="gender">Roles</label>
+
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="choice"/> Admin </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="choice"/> Student </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="choice"/> User </label>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-5 col-xs-push-4">
+                            <a href="#" class="btn btn-success">
+                                <scan class="glyphicon glyphicon-pencil"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-align-justify"></scan>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group col-xs-8 name">
+                        <div class="col-xs-7 " id = "agreement">
+                            <label for="agreement">License Agreement</label>
+                            <div class="radio">
+                                <label><input type="radio" name="agreement1" /> Yes </label>
+                            </div>
+                            <div class="radio">
+                                    <label><input type="radio" name="agreement1" /> No </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 col-xs-push-4">
+                            <a href="#" class="btn btn-success">
+                                <scan class="glyphicon glyphicon-pencil"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-align-justify"></scan>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- Horizontal Divider-->
+                    <div class="form-group col-xs-12 line-break">
+                        <hr>
+                    </div>
+
+
+
+                    <div class="form-group col-xs-8 name">
+                        <div class="col-xs-7" id = "addfields">
+                            <label for="addfields">Add new Field</label>
+                            <select class="form-control" type="text" name="newfield">
+                                <option value="slt">Single Line Text</option>
+                                <option value="date">Date</option>
+                                <option value="dropdown">Dropdown</option>
+                                <option value="checkboxes">Checkboxes</option>
+                                <option value="radio">Radio buttons</option>
+                                <option value="ptf">Paragraph Text Field</option
+                            </select>
+
+                        </div>
+                        <div class="col-xs-5 col-xs-push-4">
+                            <a href="#" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                        </div>
+                    </div>
+                    </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--          <form class="form-horizontal">
+
+
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="username" placeholder="Username">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-2 control-label">First Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="">
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Register</button>
+                    </div>
+                </div>
+            </form>-->
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
