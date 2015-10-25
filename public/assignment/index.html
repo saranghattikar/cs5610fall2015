@@ -15,16 +15,19 @@
     <script src="config.js"></script>
     <script src="header/header.controller.js"></script>
     <script src="sidebar/sidebar.controller.js"></script>
+    <script src="service/UserService.js"></script>
+    <script src="login/login.controller.js"></script>
 
 </head>
 <body>
 <header ng-include="'/assignment/header/header.view.html'"></header>
     <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-3 col-md-2 sidebar">
             <section ng-include="'/assignment/sidebar/sidebar.view.html'"></section>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
             <!-- <section ng-include="'/assignment/home/home.view.html'"></section> -->
             <div ng-view></div>
         </div>
