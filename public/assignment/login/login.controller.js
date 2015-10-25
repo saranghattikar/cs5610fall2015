@@ -14,6 +14,7 @@
                 UserService.findUserByUsernameAndPassword(user.username,user.password,function(error, user){
                     if (error){
                             $scope.error = error;
+                            console.log("Error in login controler");
                 		        }
                     else{
                     $rootScope.user = user

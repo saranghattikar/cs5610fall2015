@@ -35,7 +35,8 @@
 
         for (i = 0; i < arrlength ; i++) {
             if (users[i].username===username && users[i].password===password){
-            usr = users[i].username;
+            usr = users[i];
+            console.log("user found")
             }
 
             if (usr){
@@ -46,7 +47,7 @@
         }
 
         };
-/*
+
         function findAllUsers(callback){
         try {
         	return callback(null, users);
@@ -55,31 +56,34 @@
         	return callback(error);
             }
 
-        }
+        };
 
         function createUser(user,callback){
         try{
         var guid1;
-        *//*= Guid.create();*//*
+        /*Guid.create();*/
         guid1 = guid();
 
         if (typeof user != 'object')
             return callback("Enter a valid user");
+        else {
+                user.id = guid1;
+                users.push(user);
+                /*console.log(users)*/;
+                return callback(null, user);
+                }
 
-        }else {
-        user.id = guid1;
-        users.push(user);
-        return callback(null, user);
         }
         catch(error){
 
-        console.log("Error in creat user method", error);
+        console.log("Error in create user method", error);
         return callback(error);
 
         }
 
-        }
+        };
 
+/*
         function deleteUserById(userid,callback){
 
         try{
@@ -102,27 +106,61 @@
 
         }
 
-        function guid() {
-        		 	function s4() {
-        		 		return Math.floor((1 + Math.random()) * 0x10000)
-        		 		.toString(16)
-        		 		.substring(1);
-        		 	}
-        		 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-        		 	s4() + '-' + s4() + s4() + s4();
-        		 }*/
+     */
 
 
-/*        function updateUser(userid,callback){
+        function updateUser(userId,changedUser,callback){
 
+        try{
+        var exist;
+        /*var changedUser;*/
+        /*var userId = changedUser.id;*/
+        var updatedUser;
+        console.log(userId)
+        console.log(changedUser)
+        users.forEach(function(user){
+            if (user.id===userId){
+        		exist = true;
+        		for(var prop in user){
+        		if (changedUser[prop]){
+        		 user[prop] = changedUser[prop];
+        		  					}
+        		  				}
+        		 user.id = userId;
+        		 updatedUser = user;
+        		  			}
+        		  		});
 
-        }*/
+        		 if (exist){
+        		  return callback(null, updatedUser);
+                    }else{
+                   return callback("user with this id does not exist "+userId, null);
+                   }
+
+        }
+        catch(error){
+        console.log("error on updateUser");
+        return callback(error);
+        }
+        };
+
+         function guid() {
+              		 	function s4() {
+              		 		return Math.floor((1 + Math.random()) * 0x10000)
+              		 		.toString(16)
+              		 		.substring(1);
+              		 	}
+              		 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+              		 	s4() + '-' + s4() + s4() + s4();
+              		 }
+
       var service = {
-                findUserByUsernameAndPassword:findUserByUsernameAndPassword
-               /* findAllUsers:findAllUsers,
+                findUserByUsernameAndPassword:findUserByUsernameAndPassword,
+                findAllUsers:findAllUsers,
                 createUser:createUser,
-                deleteUserById:deleteUserById,
-                updateUser:updateUser*/
+                updateUser:updateUser
+                /*deleteUserById:deleteUserById*/
+
             };
             return service;
 
