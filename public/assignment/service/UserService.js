@@ -10,19 +10,19 @@
         var users = [
         {
         			id: "4543473b-d068-1048-e846-f68e04ea5c61",
-        			username: "aa",
-        			password: "aa",
-        			fname: "aa",
-        			lname: "aa",
-        			email: "aa@aa.com"
+        			username: "ee",
+        			password: "ee",
+        			fname: "ee",
+        			lname: "ee",
+        			email: "ee@ee.com"
         		},
         		{
         			id: "4543473b-d068-1048-e846-f68e04ea5c62",
-        			username: "zz",
-        			password: "zz",
-        			fname: "zz",
-        			lname: "zz",
-        			email: "zz@zz.com"
+        			username: "ff",
+        			password: "ff",
+        			fname: "ff",
+        			lname: "ff",
+        			email: "ff@ff.com"
         		}
 
         ];
