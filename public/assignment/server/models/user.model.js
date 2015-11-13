@@ -1,7 +1,7 @@
 var users = require("./user.mock.json");
 var q = require("q");
 
-module.exports = function (app, db) {
+module.exports = function (app) {
     /*    var PageSchema = mongoose.Schema({
      "label": String,
      "created": {type: Date, default: Date.now},
