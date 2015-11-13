@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" ng-controller="SidebarController">
+            <ul class="nav nav-sidebar">
+                <!--<h1>location= {{$location.url()}}</h1>-->
+                <li ng-class="{'active' : $location.url().indexOf('home') != -1 ||  $location.url().length === 1}"><a href="#/home">Home</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a href="#/profile">Profile</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('admin') != -1}"><a href="#/admin">Admin</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('form') != -1}"><a href="#/form">Forms</a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
