@@ -124,6 +124,7 @@ module.exports = function (app, db) {
                         users.splice(index, 1);
                     }
                 });
+                return users;
             }
         } catch (error) {
             console.log("exception in delete method in user.model.js", error);
@@ -163,6 +164,12 @@ module.exports = function (app, db) {
                     console.log("user found");
                 }
             }
+            if (usr) {
+                return usr;
+            } else {
+                return null;
+            }
+
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
         }
