@@ -45,17 +45,21 @@ module.exports = function (app) {
     return api;
 
     function Create(user) {
+        var deferred = q.defer();
         try {
             users.push(user);
-            return users;
+            deferred.resolve(users);
+            return deferred.promise;
         } catch (error) {
             console.log("error in user.model.js in create", error);
         }
     }
 
     function FindAll() {
+        var deferred = q.defer();
         try {
-            return users;
+            deferred.resolve(users);
+            return deferred.promise;
         } catch (error) {
             console.log("error in user.model.js in findall", error);
         }
@@ -63,26 +67,36 @@ module.exports = function (app) {
 
 
     function FindById(id) {
+        var deferred = q.defer();
+        //console.log("in FindById",id);
         try {
             var usr, pswd, arrlength, i;
-            arrlength = users.length
+            arrlength = users.length;
+            //console.log(arrlength);
             for (i = 0; i < arrlength; i++) {
-                if (users[i].id === id) {
+                if (users[i].id == id) {
                     usr = users[i];
                     console.log("user found")
                 }
             }
             if (usr) {
-                return usr;
+                deferred.resolve(usr);
+                console.log(usr);
+                //return usr;
+
             } else {
-                return null;
+                deferred.resolve(usr);
+                //return null;
             }
+            return deferred.promise;
+
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
         }
     }
 
     function Update(id, changedUser) {
+        var deferred = q.defer();
         try {
             var exist;
             var updatedUser;
@@ -102,21 +116,26 @@ module.exports = function (app) {
             });
 
             if (exist) {
-                return updatedUser;
+                deferred.resolve(updatedUser);
+                //return updatedUser;
             } else {
-                return null;
+                deferred.resolve(null);
+                //return null;
             }
+            return deferred.promise;
         }
         catch (error) {
             console.log("error on updateUser");
-            return
+            return error;
         }
     }
 
     function Delete(userid) {
+        var deferred = q.defer();
         try {
             if (typeof userid != 'string') {
-                return null;
+                deferred.resolve(null);
+                //return null;
             } else {
                 users.forEach(function (user, index) {
                     if (user.id === userid) {
@@ -124,15 +143,18 @@ module.exports = function (app) {
                         users.splice(index, 1);
                     }
                 });
-                return users;
+                deferred.resolve(users);
+                return deferred.promise;
+                //return users;
             }
         } catch (error) {
             console.log("exception in delete method in user.model.js", error);
-            return;
+            return error;
         }
     }
 
     function findUserByUsername(uname) {
+        var deferred = q.defer();
         try {
             var usr, pswd, arrlength, i;
             arrlength = users.length
@@ -143,10 +165,15 @@ module.exports = function (app) {
                 }
             }
             if (usr) {
-                return usr;
+                deferred.resolve(usr);
+                //return usr;
             } else {
-                return null;
+                deferred.resolve(null);
+                //return null;
             }
+
+            return deferred.promise;
+
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
         }
@@ -155,21 +182,27 @@ module.exports = function (app) {
 
 
     function findUserByCredentials(uname, pswd) {
+        var deferred = q.defer();
+        console.log("in findUserByCredentials");
         try {
             var usr, arrlength, i;
             arrlength = users.length;
             for (i = 0; i < arrlength; i++) {
-                if (users[i].username === uname && users[i].password == pswd) {
+                if (users[i].username == uname && users[i].password == pswd) {
                     usr = users[i];
                     console.log("user found");
                 }
             }
             if (usr) {
-                return usr;
-            } else {
-                return null;
-            }
 
+                console.log(usr);
+                deferred.resolve(usr);
+                //return usr;
+            } else {
+                deferred.resolve(null);
+                //return null;
+            }
+            return deferred.promise;
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
         }

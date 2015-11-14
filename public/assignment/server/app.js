@@ -3,5 +3,7 @@
  */
 module.exports = function(app) {
     var usermodel = require("./models/user.model.js")(app);
-    require("./services/user.service.server.js")(app, usermodel);
+    console.log("loaded model");
+    console.log(usermodel);
+    require("./services/user.service.js")(app, usermodel);
 };

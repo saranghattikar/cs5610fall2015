@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($http, $q) {
 
     console.log("Hi UserService is here");
         var users = [
@@ -29,7 +29,7 @@
 
 
 
-        function findUserByUsernameAndPassword(username,password,callback) {
+/*        function findUserByUsernameAndPassword(username,password,callback) {
         var usr, pswd, arrlength,i;
         arrlength = users.length
 
@@ -46,7 +46,19 @@
             }
         }
 
+        };*/
+
+        function findUserByUsernameAndPassword(username,password){
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user?username="+username+"&password="+password)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+            return deferred.promise;
         };
+
+
+
 
         function findAllUsers(callback){
         try {
