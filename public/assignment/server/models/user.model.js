@@ -45,10 +45,14 @@ module.exports = function (app) {
     return api;
 
     function Create(user) {
+        console.log("in server model")
+        console.log(user);
         var deferred = q.defer();
         try {
+            //user.id = guid();
+            //user.role = [];
             users.push(user);
-            deferred.resolve(users);
+            deferred.resolve(user);
             return deferred.promise;
         } catch (error) {
             console.log("error in user.model.js in create", error);
@@ -103,7 +107,8 @@ module.exports = function (app) {
             console.log(id)
             console.log(changedUser)
             users.forEach(function (user) {
-                if (user.id === id) {
+                if (user.id == id) {
+                    console.log("in if")
                     exist = true;
                     for (var prop in user) {
                         if (changedUser[prop]) {
@@ -208,6 +213,17 @@ module.exports = function (app) {
         }
 
 
+    }
+
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
     }
 
 

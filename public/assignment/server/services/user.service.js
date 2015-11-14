@@ -1,8 +1,9 @@
 /**
  * Created by SarangPC on 11/12/2015.
  */
+require('body-parser');
 module.exports = function (app, model) {
-    console.log(" model in service");
+    //console.log(" model in service");
     //console.log(model);
     //console.log(app.toString());
     app.post("/api/assignment/user", adduser);
@@ -14,13 +15,17 @@ module.exports = function (app, model) {
     app.delete("/api/assignment/user/:id", deleteUserById);
 
     function adduser(req, res) {
+        console.log(req);
+        //console.log("in server service adduser");
         var user = req.body;
+        console.log("in server service adduser");
+        console.log(user);
         model
             .Create(user)
-            .then(function (users) {
-                res.json(users);
+            .then(function (user) {
+                res.json(user);
             });
-    }
+    };
 
     function getAllUsers(req, res) {
         console.log(req);
@@ -100,12 +105,16 @@ module.exports = function (app, model) {
     }*/
 
     function updateUser(req, res) {
+        //console.log("in updateUser server services");
         var id = req.params.id;
         var user = req.body;
+        console.log(user);
         model
             .Update(id, user)
-            .then(function (users) {
-                res.json(users);
+            .then(function (updateduser) {
+               console.log("in server");
+                console.log(updateduser)
+                res.json(updateduser);
             });
     }
 
