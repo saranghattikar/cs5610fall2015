@@ -96,6 +96,7 @@
                                                     console.log("newlyCreatedUser");
                                                     //update rootscope user
                                                     $rootScope.user = newlyCreatedUser;
+                                                    console.log(newlyCreatedUser)
                                                     //broadcast login auth event for listeners to update loggedin user
                                                     $rootScope.$broadcast('auth', newlyCreatedUser);
                                                     //Navigate to profile

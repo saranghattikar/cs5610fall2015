@@ -49,8 +49,8 @@ module.exports = function (app) {
         console.log(user);
         var deferred = q.defer();
         try {
-            //user.id = guid();
-            //user.role = [];
+            user.id = guid();
+            user.role = [];
             users.push(user);
             deferred.resolve(user);
             return deferred.promise;
@@ -104,18 +104,22 @@ module.exports = function (app) {
         try {
             var exist;
             var updatedUser;
-            console.log(id)
-            console.log(changedUser)
+/*            console.log(id)
+            console.log(changedUser)*/
             users.forEach(function (user) {
                 if (user.id == id) {
                     console.log("in if")
                     exist = true;
-                    for (var prop in user) {
+                    console.log("updated user coming in method from client");
+                    console.log(changedUser);
+                    for (var prop in changedUser) {
                         if (changedUser[prop]) {
                             user[prop] = changedUser[prop];
                         }
                     }
                     user.id = id;
+                    console.log("user in list after changing");
+                    console.log(user);
                     updatedUser = user;
                 }
             });

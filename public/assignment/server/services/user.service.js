@@ -38,7 +38,7 @@ module.exports = function (app, model) {
         console.log(uname);
         console.log(pswd);
         //pswd = req.param["password"];
-        if (uname & pswd){
+        if (uname && pswd){
             getUserByUsernameAndPassword(res,uname,pswd);
             return
         }
