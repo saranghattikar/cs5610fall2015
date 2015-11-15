@@ -147,7 +147,26 @@
 
         $scope.deleteForm = deleteForm;
         function deleteForm(index) {
-            console.log("after deleteFormById");
+            console.log("in delete controller")
+            $scope.error = "";
+            if (typeof index == "undefined"){
+                $scope.error = "Please provide an formId to delete";
+            } else {
+                console.log($scope.forms[index].id);
+                FormService.deleteFormById($scope.forms[index].id)
+                    .then(function(newFormList){
+                        $scope.forms = newFormList;
+                        console.log("in delete controller");
+                        console.log(newFormList);
+                    })
+                    .catch(function(error){
+                        $scope.error = error;
+                    })
+            }
+
+
+
+ /*           console.log("after deleteFormById");
             $scope.error = null;
             if (typeof index != "undefined") {
 
@@ -166,7 +185,7 @@
             } else {
                 console.log("index is not valid")
             }
-
+*/
 
         };
 
