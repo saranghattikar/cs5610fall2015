@@ -10,33 +10,40 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><i class="fa fa-fw fa-sort"></i>Form </th>
-                <!--<th></th>-->
-                <th><i class="fa fa-fw fa-sort"></i>Action </th>
+                <th><i class="fa fa-fw fa-sort"></i>Form</th>
+                <th><i class="fa fa-fw fa-sort"></i>Action</th>
+                <th></th>
             </tr>
             </thead>
 
 
             <tr>
-                <td><input class="form-control" ng-model="formname" type="text" name="formname" placeholder="name"/></td>
+                <td><input class="form-control" ng-model="formname" type="text" name="formname" placeholder="name"/>
+                </td>
 
                 </td>
                 <td style="white-space: nowrap">
                     <a href="" ng-click="addForm(formname)" class="btn btn-primary">
                         <scan class="glyphicon glyphicon-plus"></scan>
-                    </a>
+                    </a></td>
 
+                <td style="white-space: nowrap">
                     <a href="" ng-click="selectForm(formname)" class="btn btn-success">
                         <scan class="glyphicon glyphicon-ok"></scan>
-                    </a>
+                    </a></td>
 
-                </td>
+
             </tr>
+            <!--<h1>{{forms}}</h1>-->
             <tr ng-repeat="form in forms">
-                <h1>{{form}}</h1>
-                <td><a href="" ng-click="updateForm($index)">{{form.name}}</a></td>
-                <td><a href="" ng-click="deleteForm($index)" class="btn btn-danger"><scan class="glyphicon glyphicon-remove"></scan></a></td>
-                <td><a href="" ng-click="updateForm($index)"class="btn btn-warning"><scan class="glyphicon glyphicon-pencil"></scan></a></td>
+                <!--<h1>{{form}}</h1>-->
+                <td><a href="" ng-click="updateForm($index)">{{form.title}}</a></td>
+                <td><a href="" ng-click="deleteForm($index)" class="btn btn-danger">
+                    <scan class="glyphicon glyphicon-remove"></scan>
+                </a></td>
+                <td><a href="" ng-click="updateForm($index)" class="btn btn-warning">
+                    <scan class="glyphicon glyphicon-pencil"></scan>
+                </a></td>
             </tr>
 
             </tbody>

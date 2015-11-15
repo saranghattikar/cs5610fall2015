@@ -3,23 +3,14 @@
  */
 require('body-parser');
 module.exports = function (app, model) {
-    //console.log(" model in service");
-    //console.log(model);
-    //console.log(app.toString());
     app.post("/api/assignment/user", adduser);
-    //app.get("/api/assignment/user?username=:username", getUserByUsername);
     app.get("/api/assignment/user", getAllUsers);
     app.get("/api/assignment/user/:id", getUserById);
-    //app.get("/api/assignment/user?username=:username&password=:password", getUserByUsernameAndPassword);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUserById);
 
     function adduser(req, res) {
-        console.log(req);
-        //console.log("in server service adduser");
         var user = req.body;
-        console.log("in server service adduser");
-        console.log(user);
         model
             .Create(user)
             .then(function (user) {
@@ -28,16 +19,10 @@ module.exports = function (app, model) {
     };
 
     function getAllUsers(req, res) {
-        console.log(req);
         var uname=null;
         var pswd=null;
-        //req.params
         uname = req.query.username;
         pswd = req.query.password;
-        //uname = req.param["username"];
-        console.log(uname);
-        console.log(pswd);
-        //pswd = req.param["password"];
         if (uname && pswd){
             getUserByUsernameAndPassword(res,uname,pswd);
             return
@@ -55,8 +40,6 @@ module.exports = function (app, model) {
 
 
     function getUserById(req, res) {
-        console.log("in getUserById");
-        console.log(req.params.id);
         model
             .FindById(req.params.id)
             .then(function (user) {
@@ -66,7 +49,6 @@ module.exports = function (app, model) {
     }
 
     function getUserByUsername(res,uname) {
-        console.log("in getUserByUsername");
         model
             .findUserByUsername(uname)
             .then(function (user) {
@@ -85,7 +67,6 @@ module.exports = function (app, model) {
     }*/
 
     function getUserByUsernameAndPassword(res,uname, pswd) {
-        console.log("in getUserByUsernameAndPassword");
         model
             .findUserByCredentials(uname, pswd)
             .then(function (user) {

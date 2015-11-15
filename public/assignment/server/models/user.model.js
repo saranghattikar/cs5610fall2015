@@ -2,35 +2,6 @@ var users = require("./user.mock.json");
 var q = require("q");
 
 module.exports = function (app) {
-    /*    var PageSchema = mongoose.Schema({
-     "label": String,
-     "created": {type: Date, default: Date.now},
-     "content": [{
-     "contentType": {
-     type: String,
-     enum: ["HEADING","LABEL", "PARAGRAPH", "LIST", "FORM"]
-     },
-     "heading": {
-     "size" : {type: Number, default:2},
-     "content" : {type: String, default: "Heading"}
-     },
-     "label" : {
-     "content" : {type: String, default: "Label"}
-     },
-     "paragraph" : {
-     "content" : {type: String, default: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"}
-     },
-     "list" : {
-     "listType" : {type: String, enum: ["ORDERED", "UNORDERED"], default: "ORDERED"},
-     "items": [String]
-     },
-     "form" : {
-     "formId" : String
-     }
-     }]
-     }, {collection: "lecture.mongo.pageEditor.pages"});
-
-     var PageModel = mongoose.model("PageModel", PageSchema);*/
 
     var api = {
         Create: Create,
@@ -45,8 +16,6 @@ module.exports = function (app) {
     return api;
 
     function Create(user) {
-        console.log("in server model")
-        console.log(user);
         var deferred = q.defer();
         try {
             user.id = guid();
@@ -72,11 +41,9 @@ module.exports = function (app) {
 
     function FindById(id) {
         var deferred = q.defer();
-        //console.log("in FindById",id);
         try {
             var usr, pswd, arrlength, i;
             arrlength = users.length;
-            //console.log(arrlength);
             for (i = 0; i < arrlength; i++) {
                 if (users[i].id == id) {
                     usr = users[i];
@@ -86,14 +53,10 @@ module.exports = function (app) {
             if (usr) {
                 deferred.resolve(usr);
                 console.log(usr);
-                //return usr;
-
             } else {
                 deferred.resolve(usr);
-                //return null;
             }
             return deferred.promise;
-
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
         }
@@ -168,7 +131,7 @@ module.exports = function (app) {
             var usr, pswd, arrlength, i;
             arrlength = users.length
             for (i = 0; i < arrlength; i++) {
-                if (users[i].username === uname) {
+                if (users[i].username == uname) {
                     usr = users[i];
                     console.log("user found")
                 }
