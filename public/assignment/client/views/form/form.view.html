@@ -2,8 +2,8 @@
     <h1 class="page-header">Forms</h1>
 
     <ul class="nav nav-tabs" data-tabs="tabs">
-        <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
-        <li role="presentation"><a href="form-fields.html">Fields</a></li>
+        <li role="presentation" class="active"><a href="#/form">Forms</a></li>
+        <li role="presentation"><a href="#/user">Fields</a></li>
     </ul>
 
     <div class="table-responsive">
@@ -37,7 +37,7 @@
             <!--<h1>{{forms}}</h1>-->
             <tr ng-repeat="form in forms">
                 <!--<h1>{{form}}</h1>-->
-                <td><a href="" ng-click="updateForm($index)">{{form.title}}</a></td>
+                <td><a href="" ng-click="gotoFormFields(form)">{{form.title}}</a></td>
                 <td><a href="" ng-click="deleteForm($index)" class="btn btn-danger">
                     <scan class="glyphicon glyphicon-remove"></scan>
                 </a></td>

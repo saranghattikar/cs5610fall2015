@@ -188,6 +188,13 @@
 */
 
         };
+        $scope.gotoFormFields=gotoFormFields
+        function gotoFormFields(form){
+            $scope.error = $scope.success = "";
+            $scope.selectedForm = $rootScope.selectedForm = form;
+            $rootScope.$broadcast('selectedForm', form);
+            $location.path( "/user" );
+        };
 
         $scope.selectForm = selectForm;
         function selectForm(formname) {

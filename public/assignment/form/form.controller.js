@@ -6,75 +6,22 @@
 
         $scope.$location = $location;
         $scope.user = $rootScope.user;
-        console.log($scope);
-        console.log("in form controller");
         var formsinit = function () {
-            console.log("in formsinit");
             if ($scope.user != null) {
-                /*FormService.findAllFormsForUser($scope.user.id, function (error, userForms) {
+                FormService.findAllFormsForUser($scope.user.id, function (error, userForms) {
                     if (error) {
                         $scope.error = error;
                     } else {
                         $scope.forms = userForms;
                     }
-                })*/
-                FormService.findAllFormsForUser($scope.user.id)
-                    .then(function(userForms){
-                        $scope.forms = userForms;
-                        console.log("in formsinit");
-                        console.log(userForms);
-                    })
-                    .catch(function(error){
-                        $scope.error = error;
-                    });
+                })
             }
-        };
+        }
         formsinit();
 
         $scope.addForm = addForm;
 
         function addForm(formname) {
-
-            var _this = this;
-            $scope.error = null;
-            if (!formname){
-                $scope.error = "Please provide the form name";
-            } else if ($scope.user){
-                FormService.findAllFormsForUser($scope.user.id)
-                    .then(function(userForms){
-                        $scope.forms = userForms;
-                        var exists = false;
-                        userForms.forEach(function(form, index){
-                            if (form.name == formname){
-                                exists = true;
-                            }
-                        });
-                        if (exists){
-                            $scope.error = "The entered form name for given user already exists. Please enter a different name";
-                        } else {
-                            var newFormObject = {
-                                name: formname
-                            }
-                            FormService.createFormForUser($scope.user.id, newFormObject)
-                                .then(function(newlyCreatedForm){
-                                    $scope.forms.push(newlyCreatedForm);
-                                    formname = _this.formname = "";
-                                })
-                                .catch(function(error){
-                                    $scope.error = error;
-                                });
-                        }
-                    })
-                    .catch(function(error){
-                        $scope.error = error;
-                    });
-            } else {
-                $scope.error = "Please login to add a new form";
-            }
-
-        };
-
- /*       function addForm(formname) {
             console.log(formname);
             var _this = this;
 
@@ -94,7 +41,7 @@
                     else {
                         console.log("in else");
                         $scope.forms = userForms;
-                        /!*console.log(userForms);*!/
+                        /*console.log(userForms);*/
                         var formflag = false;
                         userForms.forEach(function (form, index) {
                             if (form.name === formName) {
@@ -132,7 +79,7 @@
                 })
 
             }
-        };*/
+        }
 
         $scope.updateForm = updateForm;
         function updateForm(index) {

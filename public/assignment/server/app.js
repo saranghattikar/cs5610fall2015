@@ -12,4 +12,5 @@ module.exports = function(app) {
     //app.use(bodyParser());
     require("./services/user.service.js")(app, usermodel);
     require("./services/form.service.js")(app, formModel);
+    require("./services/field.service.js")(app, formModel);
 };

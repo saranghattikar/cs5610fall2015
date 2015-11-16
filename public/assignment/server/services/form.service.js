@@ -20,7 +20,7 @@ module.exports = function (app, model) {
             .then(function (form) {
                 res.json(form);
             });
-    };
+    }
 
     function getUserForms(req,res){
         var userId = req.params.userId;
