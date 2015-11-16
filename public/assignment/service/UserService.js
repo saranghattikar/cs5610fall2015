@@ -34,7 +34,7 @@
         arrlength = users.length
 
         for (i = 0; i < arrlength ; i++) {
-            if (users[i].username===username && users[i].password===password){
+            if (users[i].username == username && users[i].password == password){
             usr = users[i];
             console.log("user found")
             }

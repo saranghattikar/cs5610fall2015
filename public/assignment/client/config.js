@@ -29,7 +29,7 @@
                 templateUrl : "/assignment/client/views/form/form.view.html"
             })
             .when("/admin", {
-                templateUrl : "/assignment/client/views/admin/admin.html"
+                templateUrl : "/assignment/client/views/admin/admin.view.html"
             })
             .when("/user", {
                 templateUrl : "/assignment/client/views/field/field.view.html"

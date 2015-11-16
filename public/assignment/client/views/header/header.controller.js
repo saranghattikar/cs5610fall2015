@@ -2,7 +2,8 @@
     'use strict';
     angular
         .module("FormBuilderApp")
-        .controller("HeaderController", function ($scope, $location, $rootScope) {
+        .controller("HeaderController", HeaderController);
+            function HeaderController ($scope, $location, $rootScope) {
             $scope.$location = $location;
             $scope.user = $rootScope.user;
             console.log("in header Controller");
@@ -13,10 +14,12 @@
 
             $scope.logout = function () {
                 console.log("in logout");
+                $location.path("/home");
+                console.log(location.path);
                 $scope.user = $rootScope.user = null;
                 //Navigate to home
-                $location.path("/home");
+
             };
             $scope.hello = "Hello"
-        });
+        };
 })();

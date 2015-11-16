@@ -12,7 +12,7 @@
         function createFormForUser(userId, form, callback) {
 
             try {
-                if (typeof  userId === 'string' && typeof form === 'object') {
+                if (typeof  userId == 'string' && typeof form == 'object') {
                     form.id = guid();
                     form.userid = userId;
                     forms.push(form);
@@ -50,10 +50,41 @@
         };
 
         function deleteFormById(formId, callback) {
-            var formsRemaining = [];
+
+
+            try {
+                if (!formId || typeof formId !== "string"){
+                    return callback("please provide a valid formId string");
+                } else {
+                    var found = false;
+                    var userId ;
+                    forms.forEach(function(form, index){
+                        if (form && form.id == formId){
+                            found = true;
+                            userId = form.userid;
+                            forms.splice(index, 1);
+                        }
+                    });
+                    if (found){
+                        var remaningForms = [];
+                        forms.forEach(function(form, index){
+                            if (form && form.userid == userId){
+                                remaningForms.push(form);
+                            }
+                        })
+                        return callback(null, remaningForms);
+                    } else {
+                        return callback("No form found with formId : "+formId);
+                    }
+                }
+            } catch(error){
+                console.log("catched an Exception in 'deleteFormById' method", error);
+                return callback(error);
+            }
+            /*var formsRemaining = [];
             try {
 
-                if (typeof formId === "string") {
+                if (typeof formId == "string") {
                     console.log("in deleteFormById");
                     var formFlag;
                     var userId;
@@ -63,32 +94,19 @@
 
                     var i = forms.length;
                     while (i--) {
-                        if (forms[i].id === formId) {
+                        if (forms[i].id == formId) {
                             forms.splice[i, 1];
                         }
                     }
-
-
-                    /*     forms.forEach(function(form,index){
-
-                     if (form.id===formId){
-                     console.log("formID matched");
-                     formFlag = true;
-                     userId = form.userid;
-
-                     }
-                     });*/
                     console.log(forms);
                     console.log("after if (form.formid===formId)");
                     if (formFlag) {
                         forms.forEach(function (form, index) {
-                            if (form.userid === userId) {
+                            if (form.userid == userId) {
                                 console.log("userid matched");
                                 formsRemaining.push[form];
                             }
                         });
-                        /*console.log(formsRemaining);*/
-                        console.log("before return");
                         return callback(null, forms);
                     }
                 } else {
@@ -97,7 +115,7 @@
             } catch (error) {
                 console.log(error)
                 console.log("Error in deleteFormId");
-            }
+            }*/
 
         };
 

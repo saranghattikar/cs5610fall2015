@@ -9,8 +9,6 @@
         function login(user) {
 
             if (user.username != null && user.password != null) {
-
-
                 UserService.findUserByUsernameAndPassword(user.username, user.password, function (error, user) {
                     if (error) {
                         $scope.error = error;
