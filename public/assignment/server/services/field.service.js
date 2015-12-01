@@ -2,6 +2,7 @@
  * Created by SarangPC on 11/15/2015.
  */
 require('body-parser');
+var mongoose = require("mongoose");
 module.exports = function (app, model) {
     app.get("/api/assignment/form/:formId/field", getFormFields);
     app.get("/api/assignment/form/:formId/field/:fieldId", getFieldById);
@@ -12,7 +13,8 @@ module.exports = function (app, model) {
 
     function createField(req, res) {
         var field = req.body || {};
-        field.id = guid();
+        //field.id = guid();
+        field.id = field._id = mongoose.Types.ObjectId();
         var formId = req.params.formId;
         model.FindById(formId)
             .then(function (requiredForm) {
@@ -48,7 +50,8 @@ module.exports = function (app, model) {
 
     function cloneField(req, res){
         var clonedField = req.body || {};
-        clonedField.id = guid();
+        //clonedField.id = guid();
+        clonedField.id = clonedField._id = mongoose.Types.ObjectId();
         var index = req.params.index, formId = req.params.formId;
         model.FindById(formId)
             .then(function(form){
@@ -73,7 +76,7 @@ module.exports = function (app, model) {
                 var fields = requiredForm.fields || [];
                 var requiredField;
                 fields.forEach(function (field, index) {
-                    if (fieldId == field.id) {
+                    if (field.id.equals(fieldId)) {
                         requiredField = field;
                     }
                 });
@@ -98,7 +101,7 @@ module.exports = function (app, model) {
                 var fields = requiredForm.fields || [];
                 var remainingFields = [];
                 fields.forEach(function (field, index) {
-                    if (fieldId == field.id) {
+                    if (field.id.equals(fieldId)) {
                         fields.splice(index, 1);
                     }
                 });
@@ -123,7 +126,7 @@ module.exports = function (app, model) {
                 requiredForm = requiredForm || {};
                 fields = requiredForm.fields || [];
                 fields.forEach(function (field, index) {
-                    if (fieldId == field.id) {
+                    if (field.id.equals(fieldId)) {
                         field = inputField;
                     }
                 });

@@ -1,7 +1,10 @@
 var users = require("./user.mock.json");
 var q = require("q");
+var UserSchema = require('./user.schema.js');
+//var UserModel = appdb.model('UserModel', UserSchema);
+mongoose = require("mongoose");
 
-module.exports = function (app) {
+module.exports = function (app,appdb) {
 
     var api = {
         Create: Create,
@@ -13,62 +16,114 @@ module.exports = function (app) {
         findUserByCredentials: findUserByCredentials
 
     };
-    return api;
+
+
+
+    //var UserSchema = require('user.schema.js');
+    var UserModel = appdb.model('UserModel', UserSchema);
+
+
+
 
     function Create(user) {
+        //console.log("printing UserSchema");
+        //console.log(UserModel);
         var deferred = q.defer();
         try {
-            user.id = guid();
+ /*           user.id = guid();
             user.role = [];
             users.push(user);
             deferred.resolve(user);
-            return deferred.promise;
+            return deferred.promise;*/
+
+            user.id = user._id = mongoose.Types.ObjectId();
+            user.role = [];
+
+            UserModel.create(user, function(err, newuser){
+                if (err){
+                    console.log("Error while createUser : ", err);
+                    deferred.reject(err);
+//                    return reject(err);
+                } else {
+ /*                   console.log("in else");
+                    console.log(newlyCreatedUser);*/
+                    deferred.resolve(newuser);
+                }
+            });
+
         } catch (error) {
             console.log("error in user.model.js in create", error);
         }
+        return deferred.promise;
     }
 
     function FindAll() {
         var deferred = q.defer();
         try {
             deferred.resolve(users);
-            return deferred.promise;
+            //return deferred.promise;
+
+            UserModel.find({}, function(err, users){
+                if (err){
+                    console.log("Error while findAllUsers : ", err);
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(users);
+                    //resolve(dbUsers);
+                }
+            });
         } catch (error) {
             console.log("error in user.model.js in findall", error);
         }
+        return deferred.promise;
     }
 
 
-    function FindById(id) {
+    function FindById() {
         var deferred = q.defer();
         try {
             var usr, pswd, arrlength, i;
             arrlength = users.length;
-            for (i = 0; i < arrlength; i++) {
+ /*           for (i = 0; i < arrlength; i++) {
                 if (users[i].id == id) {
                     usr = users[i];
                     console.log("user found")
                 }
-            }
-            if (usr) {
+            }*/
+
+
+            UserModel.findOne({id: objectId}, function(err, usr){
+
+                if (usr) {
+                    deferred.resolve(usr);
+                    console.log(usr);
+                } else {
+                    deferred.reject(err);
+                }
+
+            });
+
+
+ /*           if (usr) {
                 deferred.resolve(usr);
                 console.log(usr);
             } else {
                 deferred.resolve(usr);
-            }
-            return deferred.promise;
+            }*/
+
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
         }
+        return deferred.promise;
     }
 
-    function Update(id, changedUser) {
+    function Update(objectId, changedUser) {
         var deferred = q.defer();
         try {
-            var exist;
+/*            var exist;
             var updatedUser;
-/*            console.log(id)
-            console.log(changedUser)*/
+/!*            console.log(id)
+            console.log(changedUser)*!/
             users.forEach(function (user) {
                 if (user.id == id) {
                     console.log("in if")
@@ -85,21 +140,37 @@ module.exports = function (app) {
                     console.log(user);
                     updatedUser = user;
                 }
+            });*/
+
+            UserModel.findOne({id: objectId}, function(err, user) {
+
+                if (err) {
+                    deferred.reject(err);
+                } else {
+
+                    for (var prop in user) {
+
+                        if (!(typeof changedUser[prop] == 'undefined')) {
+                            user[prop] = changedUser[prop];
+                        }
+
+                    }
+                    user.save(function (err) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(user);
+                        }
+                    });
+                }
             });
 
-            if (exist) {
-                deferred.resolve(updatedUser);
-                //return updatedUser;
-            } else {
-                deferred.resolve(null);
-                //return null;
-            }
-            return deferred.promise;
         }
         catch (error) {
             console.log("error on updateUser");
-            return error;
+            deferred.reject(error);
         }
+        return deferred.promise;
     }
 
     function Delete(userid) {
@@ -129,27 +200,40 @@ module.exports = function (app) {
         var deferred = q.defer();
         try {
             var usr, pswd, arrlength, i;
-            arrlength = users.length
+ /*           arrlength = users.length
             for (i = 0; i < arrlength; i++) {
                 if (users[i].username == uname) {
                     usr = users[i];
                     console.log("user found")
                 }
-            }
-            if (usr) {
+            }*/
+
+            UserModel.findOne({username: uname}, function(err, user){
+                if (err) {
+                    deferred.reject(err);
+                }else{
+                    console.log(user);
+                    deferred.resolve(user);
+                }
+            });
+
+
+ /*           if (usr) {
                 deferred.resolve(usr);
                 //return usr;
             } else {
                 deferred.resolve(null);
                 //return null;
-            }
+            }*/
 
-            return deferred.promise;
+
 
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
+            deferred.reject(error);
         }
 
+        return deferred.promise;
     }
 
 
@@ -158,28 +242,32 @@ module.exports = function (app) {
         console.log("in findUserByCredentials");
         try {
             var usr, arrlength, i;
-            arrlength = users.length;
+ /*           arrlength = users.length;
             for (i = 0; i < arrlength; i++) {
                 if (users[i].username == uname && users[i].password == pswd) {
                     usr = users[i];
                     console.log("user found");
                 }
-            }
-            if (usr) {
+            }*/
 
-                console.log(usr);
-                deferred.resolve(usr);
-                //return usr;
-            } else {
-                deferred.resolve(null);
-                //return null;
-            }
-            return deferred.promise;
+
+            UserModel.findOne({username:uname, password: pswd}, function(err, user){
+
+                if (err) {
+                    deferred.reject(err);
+                }else{
+                    console.log(user);
+                    deferred.resolve(user);
+                }
+
+            });
+
         } catch (error) {
             console.log("error in user.model.js in FindById", error);
+            deferred.reject(error);
         }
 
-
+        return deferred.promise;
     }
 
 
@@ -192,6 +280,8 @@ module.exports = function (app) {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
             s4() + '-' + s4() + s4() + s4();
     }
+
+    return api;
 
 
 };

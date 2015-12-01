@@ -2,7 +2,7 @@
  * Created by SarangPC on 11/12/2015.
  */
 require('body-parser');
-module.exports = function (app, model) {
+module.exports = function (app, model,appdb) {
     app.post("/api/assignment/user", adduser);
     app.get("/api/assignment/user", getAllUsers);
     app.get("/api/assignment/user/:id", getUserById);
@@ -15,6 +15,8 @@ module.exports = function (app, model) {
             .Create(user)
             .then(function (user) {
                 res.json(user);
+            }, function(err){
+                res.json(err);
             });
     };
 
