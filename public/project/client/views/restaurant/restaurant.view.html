@@ -1,0 +1,168 @@
+<div ng-controller="RestaurantController">
+    <h1 class="page-header">{{restaurant.name}}</h1>
+
+    <h1 class="page-header">{{text}}</h1>
+
+    <h1 class="page-header">{{restaurant.location.city}}</h1>
+
+    <div class="container">
+        <div class="rating-large">
+            <i class="star-img stars_5" title="5.0 star rating">
+                <img class="offscreen" height="30" src="{{restaurant.rating_img_url_large}}" width="84"
+                     alt="5.0 star rating">
+            </i>
+        </div>
+        <img src={{restaurant.image_url}} class="img-responsive" alt="Cinque Terre" width="304" height="236">
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+
+                <!--<tr ng-repeat="form in forms">-->
+
+                <!--<h2 class="page-header">{{restaurant}}</h2>-->
+
+                <!--       <tr>
+                           <h2>Location</h2>
+                           <h3>{{restaurant.location.cross_street}}</h3>
+                           <h3>{{restaurant.location.city}}</h3>
+                           <h3>{{restaurant.location.postal_code}}</h3>
+                           <h3>{{restaurant.location.state_code}}</h3>
+                           <h3>{{restaurant.location.display_phone}}</h3>
+
+                        </tr>-->
+                <tr>
+                    <td><a href={{restaurant.url}} class="btn btn-warning">Place Order</a>
+                        <scan class="glyphicon glyphicon-pencil"></scan>
+                    </td>
+
+                </tr>
+
+
+                </tbody>
+            </table>
+            </div>
+
+<!--            <h1>{{reviews}}</h1>-->
+            <div class="detailBox">
+                <div class="titleBox">
+                    <label>Comment Box</label>
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr data-ng-repeat="review in reviews">
+                        <h1>{{review}}</h1>
+
+ <!--                       <div>
+                            <a href={{review.user.lastname}} class="btn btn-link">Place Order</a>
+                        </div>
+                        <div>
+                            <p class="">{{review.excerpt}}</p>
+                            <span class="date sub-text">on March 5th, 2014</span>
+                        </div>-->
+                    </tr>
+<!--                    <tr>
+                        <form ng-if="user" class="form-inline" role="form">
+                            <div class="form-group">
+                                <input class="form-control" ng-model="comments" type="text-area"
+                                       placeholder="Your comments"/>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" ng-click="postcomments(comments)">Add</button>
+                            </div>
+                        </form>
+
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+
+
+ <!--           <div class="actionBox">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr ng-repeat="review in reviews">
+                                <h1>{{review}}</h1>
+
+                                <div>
+                                    <a href={{review.user.lastname}} class="btn btn-link">Place Order</a>
+                                    &lt;!&ndash;<scan class="glyphicon glyphicon-pencil"></scan>&ndash;&gt;
+                                    &lt;!&ndash;<img src={{review.user.image_url}} height="50" width="50">&ndash;&gt;
+                                </div>
+                                <div>
+                                    <p class="">{{review.excerpt}}</p> <span
+                                        class="date sub-text">on March 5th, 2014</span>
+
+                                </div>
+                            </tr>
+                            <tr>
+                                <form ng-if="user" class="form-inline" role="form">
+                                    <div class="form-group">
+                                        <input class="form-control" ng-model="comments" type="text-area"
+                                               placeholder="Your comments"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-default" ng-click="postcomments(comments)">Add</button>
+                                    </div>
+                                </form>
+
+                            </tr>
+                        </table>
+                    </div>-->
+
+                               <ul class="commentList">
+                                   <li ng-repeat="review in reviews">
+
+                                       <div>
+                                           <a href="/showprofile/:{{review.user.id}}" class="btn btn-link">{{review.user.lastname}}</a>
+                                       </div>
+                                       <div>
+                                           <p class="">{{review.excerpt}}</p>
+                                           <span class="date sub-text">on March 5th, 2014</span>
+                                       </div>
+
+ <!--                                      <div class="commenterImage">
+                                           <img src={{review.user.image_url}} height="50" width="50">
+                                       </div>
+                                       <div class="commentText">
+                                           <p class="">{{review.excerpt}}</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                                       </div>-->
+                                   </li>
+                    <!--&lt;!&ndash;               <li>
+                                       <div class="commenterImage">
+                                           <img src="http://lorempixel.com/50/50/people/7" />
+                                       </div>
+                                       <div class="commentText">
+                                           <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                                       </div>&ndash;&gt;
+                                   </li>
+                                   <li>
+                                       <div class="commenterImage">
+                                           <img src="http://lorempixel.com/50/50/people/9" />
+                                       </div>
+                                       <div class="commentText">
+                                           <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                                       </div>
+                                   </li>-->
+                               </ul>
+                    <!--           <form ng-if="user" class="form-inline" role="form">
+                                   <div class="form-group">
+                                       <input class="form-control" ng-model="comments" type="text-area" placeholder="Your comments"  />
+                                   </div>
+                                   <div class="form-group">
+                                       <button class="btn btn-default" ng-click="postcomments(comments)">Add</button>
+                                   </div>
+                               </form>-->
+                    <!--       </div>-->
+ <!--               </div>-->
+
+
+            </div>
+        </div>
+</div>

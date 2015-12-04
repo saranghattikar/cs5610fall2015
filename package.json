@@ -28,6 +28,7 @@
     "express": "~4.10.1",
     "mongoose": "^4.2.8",
     "morgan": "1.6.0",
+    "node-yelp": "0.0.3",
     "q": "1.4.1"
   },
   "devDependencies": {},

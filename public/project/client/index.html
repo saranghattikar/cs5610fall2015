@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TakeAwayApp">
+<head>
+    <meta charset="UTF-8">
+    <!--<base href="/">-->
+    </head>
+    <title>Welcome!</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet">
+
+
+    <!-- Angular from CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/search/searchresultcontroller.js"></script>
+    <script src="views/restaurant/RestaurantController.js"></script>
+    <!--<script src="services/restaurants.service.js"></script>-->
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="services/UserService.js"></script>
+    <script src="views/login/login.controller.js"></script>
+    <script src="views/register/register.controller.js"></script>
+    <script src="views/profile/profile.controller.js"></script>
+    <script src="services/review.service.js"></script>
+    <script src="views/profile/showprofile/profile.controller.js"></script>
+    <!--  <script src="services/FormService.js"></script>-->
+    <!-- <script src="services/FieldService.js"></script>-->
+    <!-- <script src="views/form/form.controller.js"></script>-->
+    <!-- <script src="views/field/field.controller.js"></script>-->
+
+
+</head>
+<body>
+<header ng-include="'/project/client/views/header/header.view.html'"></header>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <section ng-include="'/project/client/views/sidebar/sidebar.view.html'"></section>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <!-- <section ng-include="'/assignment/home/home.view.html'"></section> -->
+            <div ng-view></div>
+        </div>
+    </div>
+</div>
+
+<!-- Placing at bottom for SEO -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+
+</body>
+</html>

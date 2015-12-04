@@ -1,0 +1,37 @@
+<div class="" ng-controller="Searchresultcontroller">
+<div class="table-responsive">
+    <table class="table table-striped">
+
+        <tr ng-repeat="res in restaurants">
+            <!--<h1>{{form}}</h1>-->
+
+            <td><img class="photo-box-img" height="90" src={{res.image_url}} width="90"></td>
+            <td>
+                <div class="rating-large">
+                    <i class="star-img stars_5" title="5.0 star rating">
+                        <img class="offscreen" height="30" src="{{res.rating_img_url_large}}" width="84" alt="5.0 star rating">
+                    </i>
+                </div>
+
+            </td>
+            <td><a href="" ng-click="gotorestaurant(res)">{{res.name}}</a></td>
+            <!--<td><a href="" ng-click="deleteForm($index)" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+            </a></td>-->
+            <td><a ng-if="user" href="" ng-click="addtofav(res)" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-plus"></scan>
+            </a></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
