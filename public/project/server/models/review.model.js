@@ -27,27 +27,23 @@ module.exports = function (app,appdb) {
 
 
     function Create(review) {
-
         var deferred = q.defer();
         try {
 
             review.id = review._id = mongoose.Types.ObjectId();
-
-
             ReviewModel.create(review, function(err, newureview){
                 if (err){
-                    console.log("Error while createUser : ", err);
+                    console.log("Error while createreview : ", err);
                     deferred.reject(err);
-                    //return reject(err);
                 } else {
                     console.log("in else");
                     console.log(newureview);
-                    //deferred.resolve(newuser);
+                    deferred.resolve(newureview);
                 }
             });
 
         } catch (error) {
-            console.log("error in user.model.js in create", error);
+            console.log("error in review.model.js in create", error);
         }
         return deferred.promise;
     }

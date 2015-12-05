@@ -31,7 +31,12 @@
             })
             .when("/showprofile/:id", {
                 controller:'showProfileController',
-                templateUrl : "/project/views/profile/showprofile/profile.view.html"
+                templateUrl : "/project/client/views/profile/showprofile/profile.view.html"
+
+            })
+            .when("/favourits", {
+                //controller:'favouritController',
+                templateUrl : "/project/client/views/favourit/favourit.view.html"
 
             })
             .when("/ownerprofile", {

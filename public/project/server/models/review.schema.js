@@ -20,7 +20,7 @@ module.exports = new mongoose.Schema({
     },
     "excerpt": {
         type: String,
-        required: true
+        //required: true
         //unique: true
     },
     "user":{

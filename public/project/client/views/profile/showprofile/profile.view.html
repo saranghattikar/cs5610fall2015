@@ -1,7 +1,35 @@
 <div class="" ng-controller="showProfileController">
-    <h1 class="page-header">Profile</h1>
+    <h1 class="page-header">{{displayUser.firstName}}&nbsp{{displayUser.lastName}}</h1>
+    <h2 class="">{{displayUser.email}}</h2>
 
-    <form class="form-horizontal">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><i class="fa fa-fw fa-sort"></i>Reataurant </th>
+                <th>Address</th>
+                <th>Phone</th>
+                <!--<th></th>-->
+                <th><i class="fa fa-fw fa-sort"></i>Action </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="rest in favrestaurants">
+                <td><h3><a href="#" ng-click="gotorestaurant(rest)">{{rest.name}}</a></h3></td>
+                <td><h3>{{rest.address[0]}}&nbsp{{rest.address[1]}}&nbsp{{rest.address[2]}}</h3>
+                </td>
+                <td>{{rest.phonenumber}}</td>
+                <!--<td><a href="" ng-click=deleterestaurant(rest)"class="btn btn-warning"><scan class="glyphicon glyphicon-minus"></scan></a></td>-->
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+ <!--   <form class="form-horizontal">
         <div class="form-group">
             <label for="username" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
@@ -45,5 +73,5 @@
                 <button type="submit" ng-click="update()" class="btn btn-default">Update</button>
             </div>
         </div>
-    </form>
+    </form>-->
 </div>

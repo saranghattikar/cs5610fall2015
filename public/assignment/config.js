@@ -2,7 +2,7 @@
 
 	angular
 	.module("FormBuilderApp")
-	.config(FormBuilderRouteFunction)
+	.config(FormBuilderRouteFunction);
 
 	function FormBuilderRouteFunction($routeProvider){
 		$routeProvider

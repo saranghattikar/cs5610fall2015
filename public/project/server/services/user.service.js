@@ -9,6 +9,7 @@ module.exports = function (app, model,appdb) {
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUserById);
     app.post("/api/project/user/:uid/res/:rid", addrestaurant);
+    app.delete("/api/project/user/:uid/res/:rid", deleterestaurant);
 
 
 
@@ -44,25 +45,46 @@ module.exports = function (app, model,appdb) {
     }
 
     function addrestaurant(req,res){
-        console.log("in addrestaurant");
         var restaurant = req.body || {};
         restaurant.id = restaurant._id = mongoose.Types.ObjectId();
-        console.log(restaurant);
+        model
+            .FindById(req.params.uid)
+            .then(function (user) {
+                var restaurants = user.favorites;
+                restaurants.push(restaurant);
+                user.favorites = restaurants;
+                model
+                    .Update(req.params.uid, user)
+                    .then(function (updateduser) {
+                        res.json(updateduser);
+                    });
+            });
+    }
+
+    function deleterestaurant(req,res){
+        var uid = req.params.uid;
+        var rid= req.params.rid;
+        console.log("in deleterestauran");
+        console.log(uid);
+        console.log(rid);
+
 
         model
             .FindById(req.params.uid)
             .then(function (user) {
                 var restaurants = user.favorites;
-                console.log(user);
-                restaurants.push(restaurant);
+                var index;
+                for (i = 0; i < restaurants.length; i++) {
+                    restaurants[i].id.equals(rid);
+                    index = i;
+                    break;
+                }
+                restaurants.splice(i,1);
                 user.favorites = restaurants;
-                console.log(user);
                 model
                     .Update(req.params.uid, user)
                     .then(function (updateduser) {
-                        //console.log("in server");
-                        console.log(updateduser);
-                        res.json(updateduser);
+                        res.json(updateduser.favorites);
                     });
             });
     }

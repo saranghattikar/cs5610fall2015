@@ -2,38 +2,29 @@
     angular
         .module("TakeAwayApp")
         .controller("showProfileController", showProfileController);
-    function showProfileController($scope, $location, UserService, $rootScope,$rootParams) {
-
-
-
-        console.log($rootParams.id);
-
-
+    function showProfileController($scope, $location, UserService, $rootScope,$routeParams) {
+        console.log($routeParams.id);
         var loggedinUser = $rootScope.user;
-        var changeduser;
-        $scope.$location = $location;
-        $scope.update = update;
-        var username = $scope.username;
-        var password = $scope.password;
-        var fname = $scope.fname;
-        var lname = $scope.lname;
-        var email = $scope.email;
 
+        $scope.$location = $location;
+        $scope.get = get;
         function get() {
-            UserService.getUserById(loggedinUser.id)
+            if (loggedinUser.id === $routeParams.id){
+                $location.path("/profile");
+            }
+            UserService.getUserById($routeParams.id)
                 .then(function (user) {
-                    console.log("in controller after receiving user");
-                    console.log(user)
-                    $scope.user = user;
+                    console.log(user);
+                    //$scope.user = user;
+                    $scope.displayUser = user;
+                    $scope.favrestaurants = user.favorites;
                     $scope.success = "Succesfully retrieved user profile";
                 })
                 .catch(function (error) {
                     $scope.error = error;
                 })
-
-
-        };
+        }
         get();
 
-    };
+    }
 })();

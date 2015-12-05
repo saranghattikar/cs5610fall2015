@@ -156,7 +156,7 @@
              console.log("error on updateUser");
              return callback(error);
              }*/
-        };
+        }
 
         function guid() {
             function s4() {
@@ -173,7 +173,8 @@
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findAllUsers: findAllUsers,
             createUser: createUser,
-            updateUser: updateUser
+            updateUser: updateUser,
+            getUserById:getUserById
             /*deleteUserById:deleteUserById*/
 
         };

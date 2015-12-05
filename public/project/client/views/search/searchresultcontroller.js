@@ -19,18 +19,12 @@
                 .success(function (restaurant) {
                     //var cat=[];
                     $rootScope.restaurant = restaurant;
-
-
                     $rootScope.categories = rest.categories;
                     console.log("In gotorestaurant");
                     console.log(restaurant);
                     $location.path("/restaurant");
                 });
             return deferred.promise;
-
-
-
-
         }
 
         function addtofav(res) {
@@ -43,7 +37,7 @@
             favres.yelpId = res.id;
             console.log(res.location.display_address);
             favres.address = res.location.display_address;
-            favres.state = res.state_code;
+            favres.state = res.location.state_code;
             favres.phonenumber = res.display_phone;
             favres.name = res.name;
             console.log("Logging favres");

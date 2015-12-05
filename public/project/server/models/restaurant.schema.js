@@ -8,10 +8,10 @@ var mongoose = require('mongoose'),
 //var userchema=require("./user.schema.js");
 
 //{"id": "4543473b-d068-1048-e846-f68e04ea5c62","username": "zz","password": "zz", "firstName": "zz","lastName": "zz","email": "zz@zz.com","role": []}
-var line = mongoose.Schema({
+/*var line = mongoose.Schema({
     "type" : String
 
-});
+});*/
 
 // Define activity schema
 module.exports = new mongoose.Schema({
@@ -26,7 +26,7 @@ module.exports = new mongoose.Schema({
     "name":{
       type: String
     },
-    "address":[line],
+    "address":[{"type":String}],
     "city":{
       type: String
     },
