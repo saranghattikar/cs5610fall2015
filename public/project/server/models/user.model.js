@@ -12,12 +12,51 @@ module.exports = function (app,appdb) {
         Update: Update,
         Delete: Delete,
         findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
+        getfollowings:getfollowings
 
     };
 
     //var UserSchema = require('user.schema.js');
     var UserModel = appdb.model('ProjectUserModel', UserSchema);
+
+    function getfollowings(uid) {
+
+        var deferred = q.defer();
+        try {
+
+
+            UserModel.find({followers: uid}, function (err, ufollowings) {
+                console.log(ufollowings);
+
+                if(err){
+                    console.log("Error while getfollowings : ", err);
+                    deferred.reject(err);
+                }else {
+                    deferred.resolve(ufollowings);
+                }
+            });
+
+
+            /*        User.findById(uid).populate({ path:'following'}).exec(function(err, user) {
+             if (err) {
+             // handle err
+             }
+             if (user) {
+             // user.following[] <-- contains a populated array of users you're following
+             }
+             });*/
+
+        }catch (error){
+            console.log(error)
+        }
+        return deferred.promise;
+    }
+
+
+
+
+
     function Create(user) {
         //console.log("printing UserSchema");
         //console.log(UserModel);

@@ -23,6 +23,9 @@
             .when("/profile", {
                 templateUrl : "/project/client/views/profile/profile.view.html"
             })
+            .when("/following", {
+                templateUrl : "/project/client/views/following/following.view.html"
+            })
             .when("/login", {
                 templateUrl : "/project/client/views/login/login.view.html"
             })

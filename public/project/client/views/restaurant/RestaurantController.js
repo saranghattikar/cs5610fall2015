@@ -17,18 +17,16 @@
             loc = $rootScope.restaurant.location.display_address;
             reviews= $rootScope.restaurant.reviews;
 
-            //console.log(reviews);
-
             $scope.reviews = reviews;
             for (var i = 0; i < $rootScope.restaurant.location.display_address.length; i++) {
                 text += $rootScope.restaurant.location.display_address[i]+" ";
             }
             $scope.text = text;
             //console.log(text);
-
             function showprofile(uid) {
                 console.log(uid);
                 $location.path("/showprofile/"+uid);
+                console.log($location);
 
             }
 

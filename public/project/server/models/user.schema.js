@@ -11,7 +11,9 @@ var restaurantSchema = require("./restaurant.schema.js");
 //{"id": "4543473b-d068-1048-e846-f68e04ea5c62","username": "zz","password": "zz", "firstName": "zz","lastName": "zz","email": "zz@zz.com","role": []}
 
 // Define activity schema
-module.exports = new mongoose.Schema({
+
+
+    var user = new mongoose.Schema({
     "id": {
         type: objectId
     },
@@ -34,5 +36,9 @@ module.exports = new mongoose.Schema({
         type: String,
         required: true
     },
-    "favorites":[restaurantSchema]
+    "favorites":[restaurantSchema],
+    "followers": [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
+    "following": [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }]
 }, {collection: 'cs5610.project.user'});
+
+module.exports = user;

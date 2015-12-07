@@ -14,17 +14,7 @@
         var lname = $scope.lname;
         var email = $scope.email;
 
-        /*          console.log($scope.username)
-         console.log(username)
-         console.log(password)
-         console.log(fname)
-         console.log(lname)
 
-         $scope.user.username = username;
-         $scope.user.username = password;
-         $scope.user.fname = fname;
-         $scope.user.lname = lname;
-         $scope.user.email = email;*/
 
 
         function update() {

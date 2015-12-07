@@ -125,48 +125,25 @@
             return deferred.promise;
 
 
-            /*        try{
-             var exist;
-             /!*var changedUser;*!/
-             /!*var userId = changedUser.id;*!/
-             var updatedUser;
-             console.log(userId)
-             console.log(changedUser)
-             users.forEach(function(user){
-             if (user.id===userId){
-             exist = true;
-             for(var prop in user){
-             if (changedUser[prop]){
-             user[prop] = changedUser[prop];
-             }
-             }
-             user.id = userId;
-             updatedUser = user;
-             }
-             });
 
-             if (exist){
-             return callback(null, updatedUser);
-             }else{
-             return callback("user with this id does not exist "+userId, null);
-             }
-
-             }
-             catch(error){
-             console.log("error on updateUser");
-             return callback(error);
-             }*/
         }
 
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
 
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-                s4() + '-' + s4() + s4() + s4();
+        function deletefollower(userid,followerid){
+            var deferred = $q.defer();
+            $http.delete("/api/project/user/"+userid+"/follow/"+ followerid)
+                .success(function (updatedUser) {
+                    console.log(updatedUser);
+                    deferred.resolve(updatedUser);
+                })
+                .error(function (error) {
+                    if (error && error.message) {
+                        deferred.reject(error.message);
+                    } else {
+                        deferred.reject(error);
+                    }
+                });
+            return deferred.promise;
         }
 
         var service = {
@@ -174,7 +151,8 @@
             findAllUsers: findAllUsers,
             createUser: createUser,
             updateUser: updateUser,
-            getUserById:getUserById
+            getUserById:getUserById,
+            deletefollower:deletefollower
             /*deleteUserById:deleteUserById*/
 
         };

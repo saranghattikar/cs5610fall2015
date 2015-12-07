@@ -1,0 +1,21 @@
+<div class="" ng-controller="followingController">
+    <h1 class="page-header">You Are Following</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <td><h4><i class="fa fa-fw fa-sort"></i>Name </h4></td>
+                <td><h4>Email</h4></td>
+                <td><h4><i class="fa fa-fw fa-sort"></i>Action </h4></td>
+                <td></td>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in followings">
+                <td><h3><a href="" ng-click="visitprofile(user)">{{user.firstName}}&nbsp{{user.lastName}}</a></h3></td>
+                <td><a href="" ng-click="deleteuser(user)"class="btn btn-warning">{{user.email}}<scan class="glyphicon glyphicon-minus"></scan></a></td>
+                <td><a href="" ng-click="deleteuser(user)"class="btn btn-warning"><scan class="glyphicon glyphicon-minus"></scan></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
