@@ -1,7 +1,72 @@
+<div class="" ng-controller="Homecontroller">
+    <div class="ui-menu">
+        <ul class="ylist ylist-bordered search-results">
+            <li class="regular-search-result" ng-repeat="res in restaurants">
+
+                <div class="media">
+                    <a class="pull-left" href="#" ng-click="gotorestaurant(res)">
+                        <img class="" src="{{res.image_url}}" alt="">
+                    </a>
+
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <h3 class="media-heading"><a class="biz-name"
+                                                         ng-click="gotorestaurant(res)"
+                                                         href=""
+                                                         data-hovercard-id="OBuR_WceYQdGntSI_3_WuA">{{res.name}}</a></h3>
+
+                        </div>
+                        <!-- <i class="star-img stars_5" title="5.0 star rating">-->
+                        <img class="offscreen" height="" src="{{res.rating_img_url}}" width=""
+                             alt="">
+                        <!--</i>-->
+                        <br/>
+                        <h5>{{res.location.display_address[0]}}<br/>
+                            {{res.location.display_address[1]}}<br/>
+                            {{res.location.display_address[2]}}<br/></h5>
+
+                    </div>
+                    <div class="media-story">
+                        Phone:{{res.display_phone}}
+                        <p class="snippet">
+                            {{res.snippet_text}}
+                        </p>
+                        <a ng-if="user" href="" ng-click="addtofav(res)" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-plus">Add To Favourites</scan>
+                        </a>
+                    </div>
+
+                </div>
+                <hr>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid" ng-style="{'background-image': 'url(bgimage.jpg)'}">
+    <h1>Home page<h1>
+-->
+<!--    <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="home.html">Home</a></li>
@@ -39,9 +104,7 @@
             </div>
 
         </div>
-    </div>
-</div>
+    </div>-->
+<!--</div>-->
 
 
-</body>
-</html>-->

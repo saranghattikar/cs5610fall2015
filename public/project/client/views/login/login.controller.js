@@ -11,10 +11,12 @@
             if (user.username != null && user.password != null) {
                 UserService.findUserByUsernameAndPassword(user.username, user.password)
                     .then(function (user) {
-                        $scope.user = $rootScope.user = user;
-                        $rootScope.$broadcast('auth', user);
-                        console.log($location);
-                        $location.path("/profile");
+                        if (user!= null && typeof (user)!= "undefined") {
+                            $scope.user = $rootScope.user = user;
+                            $rootScope.$broadcast('auth', user);
+                            console.log($location);
+                            $location.path("/profile");
+                        }
 
                     })
                     .catch(function (error) {

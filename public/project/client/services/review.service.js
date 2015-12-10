@@ -36,11 +36,31 @@
 
         }
 
+        function getreviewsbyuserid(id){
+            var deferred = $q.defer();
+            $http.get("/api/project/reviews/"+ id)
+                .success(function (userReviews) {
+                    console.log("Reviews Retrived for user");
+                    console.log(userReviews);
+                    deferred.resolve(userReviews);
+                })
+
+                .error(function (error) {
+                    if (error && error.message) {
+                        deferred.reject(error.message);
+                    } else {
+                        deferred.reject(error);
+                    }
+                });
+            return deferred.promise;
+        }
+
 
 
 
         var service = {
-            postreview: postreview
+            postreview: postreview,
+            getreviewsbyuserid:getreviewsbyuserid
         };
         return service;
     }

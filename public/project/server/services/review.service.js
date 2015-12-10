@@ -7,6 +7,8 @@ module.exports = function (app,reviewmodel,appdb) {
     app.get("/api/project/search", getRestaurants);
     app.get("/api/project/res/:id", getResById);
     app.post("/api/project/rev",addReview);
+    app.get("/api/project/reviews/:id", getreviews);
+    app.get("/api/project/initialsearch",getinitialrestaurants);
 
     console.log("Hello from review in project");
 
@@ -23,6 +25,17 @@ module.exports = function (app,reviewmodel,appdb) {
             maxSockets: 25  // ~> Default is 10
         }
     });
+
+    function getreviews(req, res){
+        console.log(req.params.id);
+        reviewmodel
+            .getreviews(req.params.id)
+            .then(function (reviews) {
+                res.json(reviews);
+            }, function(err){
+                res.json(err);
+            });
+    }
 
     function addReview(req, res) {
         var review = req.body;
@@ -52,7 +65,21 @@ module.exports = function (app,reviewmodel,appdb) {
             res.json(businesses);
         });
 
-    };
+    }
+
+    function getinitialrestaurants(req, res){
+        var latd = req.query.latd;
+        var lngtd = req.query.lngtd;
+        var query = latd+','+lngtd;
+        console.log(query);
+            client.search({ terms:'food',cll:latd, actionlinks:true}).then(function (data) {
+                //console.log(data);
+                var businesses = data.businesses;
+                var location = data.region;
+                res.json(businesses);
+            });
+
+    }
 
     function getResById(req, res) {
         //console.log(req.params.id);

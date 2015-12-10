@@ -1,32 +1,192 @@
 <div class="" ng-controller="Searchresultcontroller">
-<div class="table-responsive">
-    <table class="table table-striped">
+    <div class="ui-menu">
+        <ul class="ylist ylist-bordered search-results">
+            <li class="regular-search-result" ng-repeat="res in restaurants">
 
-        <tr ng-repeat="res in restaurants">
-            <!--<h1>{{form}}</h1>-->
+                <div class="media">
+                    <a class="pull-left" href="#" ng-click="gotorestaurant(res)">
+                        <img class="" src="{{res.image_url}}" alt="">
+                    </a>
 
-            <td><img class="photo-box-img" height="90" src={{res.image_url}} width="90"></td>
-            <td>
-                <div class="rating-large">
-                    <i class="star-img stars_5" title="5.0 star rating">
-                        <img class="offscreen" height="30" src="{{res.rating_img_url_large}}" width="84" alt="5.0 star rating">
-                    </i>
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <h3 class="media-heading"><a class="biz-name"
+                                                         ng-click="gotorestaurant(res)"
+                                                         href=""
+                                                         data-hovercard-id="OBuR_WceYQdGntSI_3_WuA">{{res.name}}</a></h3>
+
+                            </div>
+                       <!-- <i class="star-img stars_5" title="5.0 star rating">-->
+                            <img class="offscreen" height="" src="{{res.rating_img_url}}" width=""
+                                 alt="5.0 star rating">
+                        <!--</i>-->
+                        <br/>
+                        <h5>{{res.location.display_address[0]}}<br/>
+                            {{res.location.display_address[1]}}<br/>
+                            {{res.location.display_address[2]}}<br/></h5>
+
+                    </div>
+                    <div class="media-story">
+                        Phone:{{res.display_phone}}
+                        <p class="snippet">
+                            {{res.snippet_text}}
+                        </p>
+                        <a ng-if="user" href="" ng-click="addtofav(res)" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-plus">Add To Favourites</scan>
+                        </a>
+                    </div>
+
                 </div>
 
-            </td>
-            <td><a href="" ng-click="gotorestaurant(res)">{{res.name}}</a></td>
-            <!--<td><a href="" ng-click="deleteForm($index)" class="btn btn-danger">
-                <scan class="glyphicon glyphicon-remove"></scan>
-            </a></td>-->
-            <td><a ng-if="user" href="" ng-click="addtofav(res)" class="btn btn-warning">
-                <scan class="glyphicon glyphicon-plus"></scan>
-            </a></td>
-        </tr>
 
-        </tbody>
-    </table>
+<!--                <div class="search-result natural-search-result" data-key="1" data-component-bound="true">
+                    <div class="biz-listing-large">
+                        <div class="main-attributes">
+                            <div class="media-block media-block&#45;&#45;12">
+                                <div class="media-avatar">
+                                    <div class="photo-box pb-90s">
+                                        <a href="/biz/boston-market-boston">
+                                            <img alt="Boston Market" class="photo-box-img" height="90"
+                                                 src={{res.image_url}} width="90">
+
+                                        </a>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="media-story">
+                                    <h3 class="search-result-title">
+                                        <span class="indexed-biz-name">{{$index+1}}<a class="biz-name"
+                                                                                      ng-click="gotorestaurant(res)"
+                                                                                      href=""
+                                                                                      data-hovercard-id="OBuR_WceYQdGntSI_3_WuA"><span><span
+                                                class="highlighted">{{res.name}}</span></span></a>
+                                            <a ng-if="user" href="" ng-click="addtofav(res)" class="btn btn-warning">
+                                                <scan class="glyphicon glyphicon-plus"></scan>
+                                            </a>
+</span>
+
+
+                                    </h3>
+
+                                    <div class="biz-rating biz-rating-large clearfix">
+
+                                        <div class="rating-large">
+                                            <i class="star-img stars_3" title="3.0 star rating">
+                                                <img class="offscreen" height="" src="{{res.rating_img_url_large}}"
+                                                     width="" alt="3.0 star rating">
+                                            </i>
+                                        </div>
+
+
+                <span class="review-count rating-qualifier">
+            {{res.review_count}}
+    </span>
+
+                                    </div>
+
+
+                                    <div class="price-category">
+                <span class="bullet-after">
+
+        &lt;!&ndash;<span class="business-attribute price-range">$</span>&ndash;&gt;
+        </span>
+                                        &lt;!&ndash;           <span class="category-str-list">
+                                                           <a href="/search?find_desc=boston&amp;find_loc=Boston%2C+MA&amp;cflt=tradamerican">{{res.categories[0][0]}}</a>,
+                                                           <a href="/search?find_desc=boston&amp;find_loc=Boston%2C+MA&amp;cflt=comfortfood">Comfort Food</a>,
+                                                           <a href="/search?find_desc=boston&amp;find_loc=Boston%2C+MA&amp;cflt=catering">Caterers</a>
+                                           </span>&ndash;&gt;
+
+
+                                    </div>
+
+
+                                    <ul class="search-result_tags">
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="secondary-attributes">
+                            <address>
+                                {{res.location.display_address[0]}}<br/>{{res.location.display_address[1]}}<br/>{{res.location.display_address[2]}}
+                            </address>
+                            <span class="offscreen">Phone number</span>
+    <span class="biz-phone">
+        {{res.display_phone}}
+    </span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="snippet-block review-snippet">
+                        <div class="media-block">
+                            &lt;!&ndash;                        <div class="media-avatar">
+                                                        <div class="photo-box pb-30s" data-hovercard-id="hYcv41M25gv6GvAZL3dAkQ">
+                                                            <a href="/user_details?userid=tvS9a_yw4dWIogQ_7vMdOQ">
+                                                                <img alt="Peter C." class="photo-box-img" height="30" src="//s3-media2.fl.yelpcdn.com/photo/PF2c9Z_fOd031k68_ZsPEg/30s.jpg" width="30">
+
+                                                            </a>
+
+                                                        </div>
+
+
+
+                                                    </div>&ndash;&gt;
+                            <div class="media-story">
+                                <p class="snippet">
+                                    {{res.snippet_text}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>-->
+
+                <hr>
+            </li>
+
+
+
+        </ul>
+
+
+        <!--<div class="table-responsive">-->
+        <!--   <table class="table table-striped">
+
+               <tr ng-repeat="res in restaurants">
+                   <td align="center"><img class="photo-box-img" height="90" src={{res.image_url}} width="90"></td>
+                   <td align="center">
+                       <div class="rating-large">
+                           <i class="star-img stars_5" title="5.0 star rating">
+                               <img class="offscreen" height="30" src="{{res.rating_img_url_large}}" width="" alt="5.0 star rating">
+                           </i>
+                       </div>
+
+                   </td>
+                   <td><a href="" ng-click="gotorestaurant(res)">{{res.name}}<br/></a>
+                   &lt;!&ndash;<td align="center"></td>&ndash;&gt;
+                       {{res.location.display_address[0]}}<br/>{{res.location.display_address[1]}}<br/>{{res.location.display_address[2]}}</td>
+
+                   &lt;!&ndash;<td><a href="" ng-click="deleteForm($index)" class="btn btn-danger">
+                       <scan class="glyphicon glyphicon-remove"></scan>
+                   </a></td>&ndash;&gt;
+                   <td align="center"><a ng-if="user" href="" ng-click="addtofav(res)" class="btn btn-warning">
+                       <scan class="glyphicon glyphicon-plus"></scan>
+                   </a></td>
+               </tr>
+
+               </tbody>
+           </table>-->
+    </div>
+
 </div>
 </div>
+
 
 
 

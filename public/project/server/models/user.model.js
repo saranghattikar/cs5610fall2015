@@ -27,7 +27,7 @@ module.exports = function (app,appdb) {
 
 
             UserModel.find({followers: uid}, function (err, ufollowings) {
-                console.log(ufollowings);
+                    console.log(ufollowings);
 
                 if(err){
                     console.log("Error while getfollowings : ", err);

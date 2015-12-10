@@ -5859,6 +5859,26 @@ h5 a:hover { color: #666; }
   background-color: #e00000;
 }
 
+.transparent_class {
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
+  /* IE 5-7 */
+  filter: alpha(opacity=50);
+
+  /* Netscape */
+  -moz-opacity: 0.5;
+
+  /* Safari 1.x */
+  -khtml-opacity: 0.5;
+
+  /* Good browsers */
+  opacity: 0.5;
+}
+#back {
+  background-image: url("../bgimage1.jpg");
+}
+
 
 
 /***************************************************/

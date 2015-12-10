@@ -2,7 +2,7 @@
     angular
         .module("TakeAwayApp")
         .controller("Searchresultcontroller", Searchresultcontroller);
-    function Searchresultcontroller($scope, $location, $rootScope,$http,$q) {
+    function Searchresultcontroller($scope, $location,RestaurantService, $rootScope) {
 
        $scope.$location = $location;
         $scope.gotorestaurant = gotorestaurant;
@@ -11,7 +11,20 @@
 
         function gotorestaurant(rest) {
 
-            var deferred = $q.defer();
+
+            RestaurantService.getrestaurantbyyelpId(rest.id)
+                .then(function (restaurant) {
+                    $rootScope.restaurant = restaurant;
+                    $location.path("/restaurant");
+                })
+                .catch(function (error) {
+                    $scope.error = error;
+                });
+
+
+
+
+/*            var deferred = $q.defer();
             console.log("in gotorestaurant");
             console.log(rest);
 
@@ -24,11 +37,11 @@
                     console.log(restaurant);
                     $location.path("/restaurant");
                 });
-            return deferred.promise;
+            return deferred.promise;*/
         }
 
         function addtofav(res) {
-            var deferred = $q.defer();
+
             console.log("in addtofav");
             console.log(res);
             var user = $rootScope.user;
@@ -43,9 +56,18 @@
             console.log("Logging favres");
             console.log(favres);
 
+
+            RestaurantService.addtofavourite(userid,res.id,favres)
+                .then(function (user) {
+                    console.log("Added to favourits successfully")
+                })
+                .catch(function (error) {
+                    $scope.error = error;
+                });
+
             //user.favorites.push(favres);
             //console.log(favres);
-            $http.post("/api/project/user/"+userid+"/res/"+res.id,favres)
+ /*           $http.post("/api/project/user/"+userid+"/res/"+res.id,favres)
                 .success(function (user) {
                     //var cat=[];
 
@@ -53,44 +75,7 @@
                     console.log(user);
                     //$location.path("/restaurant");
                 });
-            return deferred.promise;
+            return deferred.promise;*/
         }
-
-  /*      $http.get("/api.locu.com/v1_0/venue/search/? api_key=" + key + "&locality=" + location)
-            .success(function (results) {
-                console.log(results)
-                $scope.restaunrts = results.objects;
-                //deferred.resolve(results);
-            });*/
-
-
-
-        /*        function login(user) {
-
-            if (user.username != null && user.password != null) {
-                /!*          UserService.findUserByUsernameAndPassword(user.username,user.password,function(error, user){
-                 if (error){
-                 $scope.error = error;
-                 console.log("Error in login controler");
-                 }
-                 else{
-                 $rootScope.user = user
-                 $location.path( "/profile" );
-
-                 }
-                 });*!/
-                UserService.findUserByUsernameAndPassword(user.username, user.password)
-                    .then(function (user) {
-                        $scope.user = $rootScope.user = user;
-                        $rootScope.$broadcast('auth', user);
-                        $location.path("/profile");
-
-                    })
-                    .catch(function (error) {
-                        $scope.error = error;
-                    })
-
-            }
-        }*/
     }
 })();

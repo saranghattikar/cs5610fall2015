@@ -19,7 +19,7 @@ module.exports = new mongoose.Schema({
         type: objectId
     },
     "excerpt": {
-        type: String,
+        type: String
         //required: true
         //unique: true
     },
@@ -35,6 +35,13 @@ module.exports = new mongoose.Schema({
             type:String
         }
     },
+    "restaurantimgurl":{
+        type:String
+    },
+    "restaurant_image_url":{type:String},
+    "restaurant_name":{type:String},
+    "restaurant_rating_img_url_large":{"type":String},
+    "restaurant_address":[{"type":String}],
     "restaurantId":{
         type:String
     }

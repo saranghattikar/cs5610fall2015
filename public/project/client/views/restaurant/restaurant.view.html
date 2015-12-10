@@ -1,106 +1,92 @@
 <div ng-controller="RestaurantController">
-    <h1 class="page-header">{{restaurant.name}}</h1>
 
-    <h1 class="page-header">{{text}}</h1>
+    <div class = "page-header">
 
-    <h1 class="page-header">{{restaurant.location.city}}</h1>
+        <div class="media">
+            <a class="pull-left" href="#" ng-click="showprofile(review.user.id)">
+                <img class="" src="{{restaurant.image_url}}" alt="">
+            </a>
 
+
+            <div class="media-body">
+                <div class="media-heading">
+                <h3 class="media-heading">{{restaurant.name}}<br/></h3>
+                    <i class="star-img stars_5" title="5.0 star rating">
+                        <img class="offscreen" height="" src="{{restaurant.rating_img_url_large}}" width=""
+                             alt="5.0 star rating"></i><br/>
+                    <h5>{{restaurant.location.display_address[0]}}<br/>
+                    {{restaurant.location.display_address[1]}}<br/>
+                    {{restaurant.location.display_address[2]}}<br/></h5>
+                    </div>
+                    <!--<small>August 25, 2014 at 9:30 PM</small>-->
+
+                <!--{{review.excerpt}}-->
+            </div>
+        </div>
+
+
+
+ <!--   <h1>{{restaurant.name}}<br/>
+        <i class="star-img stars_5" title="5.0 star rating">
+            <img class="offscreen" height="30" src="{{restaurant.rating_img_url_large}}" width=""
+                 alt="5.0 star rating"></i></h1>
+
+        <h3>{{restaurant.location.display_address[0]}}<br/>
+        {{restaurant.location.display_address[1]}}<br/>
+        {{restaurant.location.display_address[2]}}<br/>
+    </h3>-->
+        </div>
+
+
+<!--        {{restaurant.location.display_address[0]}}<br/>
+                {{restaurant.location.display_address[1]}}<br/>
+                {{restaurant.location.display_address[2]}}<br/>
+                <i class="star-img stars_5" title="5.0 star rating">
+                    <img class="offscreen" height="30" src="{{restaurant.rating_img_url_large}}" width=""
+                         alt="5.0 star rating">
+                </i>-->
+
+    <div id="map"></div>
+    <hr>
+
+    <div ng-if="user" class="well">
+                <h4>Leave a Comment:</h4>
+                <form role="form" name="commentform" ng-init="setFormScope(this)">
+                    <div class="form-group">
+                        <textarea class="form-control" ng-model="comments" value ="comments" rows="3"></textarea>
+                    </div>
+                    <button type="submit" ng-click="postcomments(comments)" class="btn btn-primary">Submit</button>
+
+                </form></div>
+        <div><h3>Recommended Reviews:</h3></div>
     <div class="container">
-        <div class="rating-large">
-            <i class="star-img stars_5" title="5.0 star rating">
-                <img class="offscreen" height="30" src="{{restaurant.rating_img_url_large}}" width="84"
-                     alt="5.0 star rating">
-            </i>
+            <div class="row pull-left" data-ng-repeat="review in reviews">
+                <div class="col-xs-12 col-sm-6 col-md-8">
+                <div class="media">
+                    <a class="pull-left" href="" ng-click="showprofile(review.user.id)">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+
+                    <div class="media-body">
+                        <h4 class="media-heading">{{review.user.firstname}}&nbsp{{review.user.lastname}}
+                            <!--<small>August 25, 2014 at 9:30 PM</small>-->
+                        </h4>
+                        {{review.excerpt}}
+                    </div>
+                </div>
+
+                <!--                <div>
+                                    <dl>
+                                    <a ng-click="showprofile(review.user.id)" href="" class="btn btn-link"><dt>{{review.user.firstname}}&nbsp{{review.user.lastname}}</dt></a>
+                                    <blockquote>
+                                    <p class="">&nbsp&nbsp&nbsp{{review.excerpt}}</p>
+                                    </blockquote>
+                                    </dl>
+                                </div>-->
+                <hr>
+            </div>
         </div>
-        <img src={{restaurant.image_url}} class="img-responsive" alt="Cinque Terre" width="304" height="236">
-
-        <div class="table-responsive">
-            <table class="table table-striped">
-
-                <!--<tr ng-repeat="form in forms">-->
-
-                <!--<h2 class="page-header">{{restaurant}}</h2>-->
-
-                <!--       <tr>
-                           <h2>Location</h2>
-                           <h3>{{restaurant.location.cross_street}}</h3>
-                           <h3>{{restaurant.location.city}}</h3>
-                           <h3>{{restaurant.location.postal_code}}</h3>
-                           <h3>{{restaurant.location.state_code}}</h3>
-                           <h3>{{restaurant.location.display_phone}}</h3>
-
-                        </tr>-->
-                <tr>
-                    <td><a href={{restaurant.url}} class="btn btn-warning">Place Order</a>
-                        <scan class="glyphicon glyphicon-pencil"></scan>
-                    </td>
-
-                </tr>
-
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <tbody>
-
-                <tr data-ng-repeat="review in reviews">
-                    <td>
-                        <div>
-                            <a ng-click="showprofile(review.user.id)" href="" class="btn btn-link"><h1>{{review.user.firstname}}&nbsp{{review.user.lastname}}</h1></a>
-                        </div>
-                        <div>
-                            <p class="">&nbsp&nbsp&nbsp{{review.excerpt}}</p>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <form ng-if="user" class="form-inline" role="form">
-                            <div class="form-group">
-                                <input class="form-control" ng-model="comments" type="text-area"
-                                       placeholder="Your comments"/>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-default" ng-click="postcomments(comments)">Add</button>
-                            </div>
-                        </form>
-
-                    </td>
-                </tr>
-
-
-                </tbody>
-            </table>
-        </div>
-
-
-        <!--
-                <ul class="commentList">
-                    <li ng-repeat="review in reviews">
-
-                        <div>
-                            <a href="/showprofile/:{{review.user.id}}" class="btn btn-link">{{review.user.firstname}}&nbsp{{review.user.lastname}}</a>
-                        </div>
-                        <div>
-                            <p class="">{{review.excerpt}}</p>
-                            &lt;!&ndash;<span class="date sub-text">on March 5th, 2014</span>&ndash;&gt;
-                        </div>
-
-                        &lt;!&ndash;                                      <div class="commenterImage">
-                                                                  <img src={{review.user.image_url}} height="50" width="50">
-                                                              </div>
-                                                              <div class="commentText">
-                                                                  <p class="">{{review.excerpt}}</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                                              </div>&ndash;&gt;
-                    </li>
-                </ul>
-        -->
-
-
     </div>
 </div>
+
 

@@ -16,7 +16,7 @@
                     deferred.resolve(user);
                 });
             return deferred.promise;
-        };
+        }
 
 
 
@@ -146,13 +146,44 @@
             return deferred.promise;
         }
 
+
+        function getfollowings(userid){
+            var deferred = $q.defer();
+            $http.get("/api/project/user/followings/" + userid)
+                .success(function (followings) {
+                    deferred.resolve(followings)
+                })
+                .error(function (error) {
+                    if (error && error.message) {
+                        deferred.reject(error.message);
+                    } else {
+                        deferred.reject(error);
+                    }
+                });
+            return deferred.promise;
+        }
+
+        function addfollowing(loggedInId,followingId){
+            var deferred = $q.defer();
+
+            $http.get("/api/project/user/"+loggedInId+"/follow/"+followingId)
+                .success(function (user) {
+                    deferred.resolve(user)
+                });
+
+            return deferred.promise;
+
+        }
+
         var service = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findAllUsers: findAllUsers,
             createUser: createUser,
             updateUser: updateUser,
             getUserById:getUserById,
-            deletefollower:deletefollower
+            deletefollower:deletefollower,
+            getfollowings:getfollowings,
+            addfollowing:addfollowing
             /*deleteUserById:deleteUserById*/
 
         };

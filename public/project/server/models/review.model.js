@@ -12,6 +12,7 @@ module.exports = function (app,appdb) {
 
     var api = {
         Create: Create,
+        getreviews:getreviews,
         /*        FindAll: FindAll,
         FindById: FindById,*/
         FindByResId:FindByResId
@@ -22,6 +23,33 @@ module.exports = function (app,appdb) {
 
     };
     var ReviewModel = appdb.model('ReviewModel', ReviewSchema);
+
+
+    function getreviews(id){
+        var deferred = q.defer();
+        try{
+            console.log(id);
+            var query = '{'+'user.'+ id+'}';
+            //query['user.' +
+            console.log(query);
+
+            ReviewModel.find({'user.id':id}, function (err, reviews) {
+                //console.log(reviews);
+
+                if(err){
+                    console.log("Error while getreviews : ", err);
+                    deferred.reject(err);
+                }else {
+                    deferred.resolve(reviews);
+                }
+            });
+
+        }catch (error){
+            console.log(error)
+        }
+        return deferred.promise;
+    }
+
 
 
 

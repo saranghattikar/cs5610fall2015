@@ -11,8 +11,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="user in followings">
-                <td><h3><a href="" ng-click="visitprofile(user)">{{user.firstName}}&nbsp{{user.lastName}}</a></h3></td>
-                <td><a href="" ng-click="deleteuser(user)"class="btn btn-warning">{{user.email}}<scan class="glyphicon glyphicon-minus"></scan></a></td>
+                <td><h5><a href="" ng-click="visitprofile(user)">{{user.firstName}}&nbsp{{user.lastName}}</a></h5></td>
+                <td><h5>{{user.email}}</h5></td>
                 <td><a href="" ng-click="deleteuser(user)"class="btn btn-warning"><scan class="glyphicon glyphicon-minus"></scan></a></td>
             </tr>
             </tbody>
