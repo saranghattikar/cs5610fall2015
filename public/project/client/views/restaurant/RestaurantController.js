@@ -21,6 +21,8 @@
 
             var infowindow;
 
+            reviews.splice(0,1);
+
             $scope.reviews = reviews;
             for (var i = 0; i < $rootScope.restaurant.location.display_address.length; i++) {
                 text += $rootScope.restaurant.location.display_address[i]+" ";

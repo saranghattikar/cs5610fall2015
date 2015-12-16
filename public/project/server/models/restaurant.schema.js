@@ -35,5 +35,7 @@ module.exports = new mongoose.Schema({
     },
     "phonenumber":{
         type: String
-    }
+    },
+    "restaurant_image_url":{type:String},
+    "restaurant_rating_img_url_large":{"type":String}
 }, {collection: 'cs5610.project.restaurant'});

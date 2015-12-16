@@ -1,6 +1,32 @@
-<div class="" ng-controller="followingController">
+<div class="col-sm-9" ng-controller="followingController">
     <h1 class="page-header">You Are Following</h1>
 
+
+
+    <div class="row pull-left" data-ng-repeat="user in followings">
+<!--        <div class="col-xs-12 col-sm-6 col-md-8">-->
+            <div class="media">
+                <a class="pull-left" href="" ng-click="showprofile(user.id)">
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
+                <a href="" ng-click="deleteuser(user)"class="btn btn-warning pull-right"><scan class="glyphicon glyphicon-minus"></scan></a>
+
+                <div class="media-body">
+                    <h4 class="media-heading">{{user.firstName}}&nbsp{{user.lastname}}
+                    </h4>
+                    {{user.email}}
+                </div>
+            </div>
+            <hr>
+ <!--       </div>-->
+    </div>
+
+
+
+
+
+
+<!--
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -17,5 +43,5 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
 </div>

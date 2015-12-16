@@ -1,4 +1,4 @@
-<div class="" ng-controller="showProfileController">
+<div class="col-sm-8" ng-controller="showProfileController">
  <!--   <h1 class="page-header">{{displayUser.firstName}}&nbsp{{displayUser.lastName}}</h1>
     <h2 class="">{{displayUser.email}}</h2>-->
 
@@ -8,18 +8,66 @@
         <a class="pull-left" href="#" ng-click="showprofile(review.user.id)">
             <img class="" src="http://placehold.it/64x64" alt="">
         </a>
+        <div><button class=" btn pull-right btn-info glyphicon glyphicon-ok" disabled="disabled" type="submit" ng-if="user && showfollowing!=false" class="btn btn-primary" ng-click="addtolist()">Following</button></div>
+        <div><button type="submit" ng-if="user && show==true" class="btn btn-primary pull-right" ng-click="addtolist()">Follow</button></div>
         <div class="media-body">
             <div class="media-heading">
                 <h3 class="media-heading">{{displayUser.firstName}}&nbsp{{displayUser.lastName}}<br/></h3>
                 <h4 class="">{{displayUser.email}}</h4>
             </div>
+
         </div>
     </div>
     </div>
 
     <div><h3>Favourite Restaurants:</h3></div>
+    <div ng-if="!favrestaurants">
+        <h3>This user have not selected any favourite restaurant yet</h3>
+    </div>
+    <div class="ui-menu">
+        <ul class="ylist ylist-bordered search-results">
+            <li class="regular-search-result" ng-repeat="rest in favrestaurants">
 
-    <div class="table-responsive">
+                <div class="media">
+                    <a class="pull-left" href="#" ng-click="gotorestaurant(res)">
+                        <img class="" src="{{rest.restaurant_image_url}}" alt="">
+                    </a>
+                    <!--<a href="" ng-click="deleterestaurant(rest)"class="btn btn-warning pull-right"><scan class="glyphicon glyphicon-minus"></scan></a>-->
+
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <h3 class="media-heading"><a class="biz-name"
+                                                         ng-click="gotorestaurant(res)"
+                                                         href=""
+                                                         data-hovercard-id="OBuR_WceYQdGntSI_3_WuA">{{rest.name}}</a></h3>
+
+                        </div>
+                        <!-- <i class="star-img stars_5" title="5.0 star rating">-->
+                        <img class="offscreen" height="" src="{{rest.restaurant_rating_img_url_large}}" width=""
+                             alt="5.0 star rating">
+                        <!--</i>-->
+                        <br/>
+                        <h5>{{rest.address[0]}}<br/>
+                            {{rest.address[1]}}<br/>
+                            {{rest.address[2]}}<br/></h5>
+
+                    </div>
+                    <div class="media-story">
+                        Phone:{{rest.phonenumber}}
+                        <p class="snippet">
+                            {{res.snippet_text}}
+                        </p>
+                    </div>
+
+                </div>
+                <hr>
+            </li>
+        </ul>
+    </div>
+
+
+
+<!--    <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -33,12 +81,12 @@
                 <td><h5><a href="#" ng-click="gotorestaurant(rest)">{{rest.name}}</a></h5></td>
                 <td><h5>{{rest.address[0]}}&nbsp{{rest.address[1]}}&nbsp{{rest.address[2]}}</h5></td>
                 <td>{{rest.phonenumber}}</td>
-                <!--<td><a href="" ng-click=deleterestaurant(rest)"class="btn btn-warning"><scan class="glyphicon glyphicon-minus"></scan></a></td>-->
+                &lt;!&ndash;<td><a href="" ng-click=deleterestaurant(rest)"class="btn btn-warning"><scan class="glyphicon glyphicon-minus"></scan></a></td>&ndash;&gt;
             </tr>
 
             </tbody>
         </table>
-    </div>
+    </div>-->
 
     <hr>
 
@@ -98,7 +146,8 @@
     </div>-->
 
 
-    <button type="submit" ng-if="user && show!=false" class="btn btn-primary" ng-click="addtolist()">Follow</button>
+
+
 <!--    <a href="" ng-click="addtolist()"class="btn btn-warning"><scan class="glyphicon glyphicon-minus"></scan></a>-->
 
 

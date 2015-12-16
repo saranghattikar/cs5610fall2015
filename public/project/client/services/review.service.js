@@ -40,8 +40,10 @@
             var deferred = $q.defer();
             $http.get("/api/project/reviews/"+ id)
                 .success(function (userReviews) {
+/*
                     console.log("Reviews Retrived for user");
                     console.log(userReviews);
+*/
                     deferred.resolve(userReviews);
                 })
 

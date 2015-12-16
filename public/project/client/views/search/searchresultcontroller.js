@@ -47,6 +47,8 @@
             var user = $rootScope.user;
             var userid = $rootScope.user.id;
             var favres = {};
+            favres.restaurant_image_url = res.image_url;
+            favres.restaurant_rating_img_url_large = res.rating_img_url_small;
             favres.yelpId = res.id;
             console.log(res.location.display_address);
             favres.address = res.location.display_address;
@@ -59,6 +61,7 @@
 
             RestaurantService.addtofavourite(userid,res.id,favres)
                 .then(function (user) {
+                    console.log(user.favorites);
                     console.log("Added to favourits successfully")
                 })
                 .catch(function (error) {
