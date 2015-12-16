@@ -7,6 +7,7 @@
 
                 $scope.$location = $location;
                 $scope.error = null;
+                $scope.fielderror = null;
                 $scope.register = register;
                 function register(current_user){
 
@@ -60,7 +61,8 @@
 
                     }*/
 
-                    if (current_user.username != null && current_user.password != null && current_user.cnfpassword!=null){
+                    if (current_user.username != null && current_user.password != null && current_user.cnfpassword!=null && current_user.firstName != null &&
+                    current_user.lastName!= null){
                         console.log("In register controller");
                         if(current_user.password===current_user.cnfpassword){
                         console.log("passwords matched");
@@ -89,7 +91,10 @@
                                             var newUserObject = {
                                                 username: current_user.username,
                                                 password: current_user.password,
-                                                email: current_user.email
+                                                email: current_user.email,
+                                                firstName:current_user.firstName,
+                                                lastName:current_user.lastName
+
                                             };
                                             UserService.createUser(newUserObject)
                                                 .then(function(newlyCreatedUser){
@@ -118,6 +123,10 @@
 
 
 
+
+                    }
+                    else{
+                    $scope.fielderror = "All fields in the form are compulsory also check if password and confirm password are same";
 
                     }
 
