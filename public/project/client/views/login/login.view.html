@@ -25,5 +25,10 @@
                 <button type="submit" ng-click="login(user)" class="btn btn-default">Login</button>
             </div>
         </div>
+
+        <div ng-if ="error" class="alert alert-warning" ng-model="error">
+            <strong>Warning!</strong> Login or Id is not correct
+        </div>
+
     </form>
 </div>

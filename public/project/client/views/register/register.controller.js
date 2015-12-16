@@ -63,6 +63,7 @@
                     if (current_user.username != null && current_user.password != null && current_user.cnfpassword!=null){
                         console.log("In register controller");
                         if(current_user.password===current_user.cnfpassword){
+                        console.log("passwords matched");
                             UserService.findAllUsers()
                                 .then(function(users){
                                     if (current_user.password !== current_user.cnfpassword){

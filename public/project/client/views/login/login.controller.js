@@ -6,6 +6,7 @@
 
         $scope.$location = $location;
         $scope.login = login;
+        $scope.error = null;
         function login(user) {
 
             if (user.username != null && user.password != null) {
@@ -16,6 +17,8 @@
                             $rootScope.$broadcast('auth', user);
                             console.log($location);
                             $location.path("/profile");
+                        }else{
+                        $scope.error = "credentials not correct";
                         }
 
                     })
